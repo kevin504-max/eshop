@@ -29,7 +29,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', [FrontEndController::class, 'index']);
 
-    Route::name('categoria.')->prefix('categoria')->group(function () {
+    Route::name('categorias.')->prefix('categorias')->group(function () {
         Route::get('index', [CategoriasController::class, 'index'])->name('index');
         Route::post('store', [CategoriasController::class, 'store'])->name('store');
         Route::put('update', [CategoriasController::class, 'update'])->name('update');

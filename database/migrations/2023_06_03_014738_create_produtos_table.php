@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->integer('category_id');
+            $table->foreign('category_id')->references('id')->on('categorias');
             $table->string('description');
             $table->decimal('price', 15, 2);
             $table->decimal('discountPercentage', 15, 2)->nullable();

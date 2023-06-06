@@ -25,18 +25,18 @@
                     @forelse ($produtos as $produto)
                         <tr>
                             <td class="text-center align-middle">{{ $produto->id }}</td>
-                            <td class="text-center align-middle">{{ $produto->categoria ?? "-" }}</td>
+                            <td class="text-center align-middle">{{ $produto->categoria->nome ?? "-" }}</td>
                             <td class="text-center align-middle">{{ $produto->title }}</td>
                             <td class="text-center align-middle">{{ $produto->price }}</td>
                             <td class="text-center align-middle">{{ $produto->discountPercentage }}</td>
                             <td class="text-center align-middle">{{ $produto->rating }}</td>
                             <td class="text-center align-middle">{{ $produto->stock }}</td>
                             <td class="text-center align-middle">
-                                <img src="{{ $produto->thumbnail }}" alt="image" class="img-circle img-preview">
+                                <img src="{{ $produto->thumbnail }}" alt="image" class="img-circle img-preview w-25">
                             </td>
                             <td class="text-center align-middle">
-                                <button class="btn btn-primary" type="button" data-bs-target="modal" data-bs-toggle="modalUpdateProduto" data-dados="{{ $produto }}"><i class="fa fa-pen"></i></button>
-                                <button class="btn btn-danger" type="button" data-bs-target="modal" data-bs-toggle="modalDeleteProduto" data-id="{{ $produto->id }}"><i class="fa fa-trash"></i></button>
+                                <button class="btn btn-primary" type="button" data-bs-target="#modalUpdateProduto" data-bs-toggle="modal" data-dados="{{ $produto }}"><i class="fa fa-pen"></i></button>
+                                <button class="btn btn-danger" type="button" data-bs-target="#modalDeleteProduto" data-bs-toggle="modal" data-id="{{ $produto->id }}"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                     @empty
@@ -51,4 +51,12 @@
             </table>
         </div>
     </div>
+@endsection
+
+@section('modals')
+@include('admin.produto._modals')
+@endsection
+
+@section('scripts')
+@include('admin.produto._scripts')
 @endsection

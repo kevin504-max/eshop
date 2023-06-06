@@ -6,7 +6,7 @@
                 <button class="close" type="button" data-bs-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Adicionar Categoria</h4>
             </div>
-            <form action="{{ route('categoria.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('categorias.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
@@ -65,7 +65,7 @@
                 <button class="close" type="button" data-bs-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Atualizar Categoria</h4>
             </div>
-            <form action="{{ route('categoria.update') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('categorias.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method("PUT")
                 <input type="hidden" name="id" id="id">
@@ -130,7 +130,7 @@
                 <h5 class="text-center">Deseja realmente <strong>excluir</strong> esta categoria?</h5>
                 <span class="text-muted">Esta ação não poderá ser desfeita.</span>
             </div>
-            <form action="{{ route('categoria.destroy') }}" method="POST">
+            <form action="{{ route('categorias.destroy') }}" method="POST">
                 @csrf
                 @method("DELETE")
                 <input type="hidden" name="id" id="id">
