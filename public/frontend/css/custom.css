@@ -75,3 +75,15 @@ html, body, #root {
 .modal-footer {
     margin-top: 0;
 }
+
+.img-preview {
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+}
+
+.img-circle {
+    border-radius: 50%;
+}

@@ -10,8 +10,13 @@ use Illuminate\Support\Facades\File;
 class CategoriasController extends Controller
 {
     public function index () {
-        $categorias = Categoria::all();
-        return view('admin.categoria.index', compact('categorias'));
+        try {
+            $categorias = Categoria::all();
+            return view('admin.categoria.index', compact('categorias'));
+        } catch (\Throwable $th) {
+            report ($th);
+            return redirect()->back()->with(["status" => "error", "message" => "Erro ao acessar a página de categorias! Tente novamente."]);
+        }
     }
 
     public function store (Request $request) {

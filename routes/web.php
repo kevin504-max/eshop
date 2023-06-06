@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\FrontEndController;
 use App\Http\Controllers\Admin\CategoriasController;
+use App\Http\Controllers\Admin\ProdutosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +34,12 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::post('store', [CategoriasController::class, 'store'])->name('store');
         Route::put('update', [CategoriasController::class, 'update'])->name('update');
         Route::delete('destroy', [CategoriasController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::name('produtos.')->prefix('produtos')->group(function () {
+        Route::get('index', [ProdutosController::class, 'index'])->name('index');
+        Route::post('store', [ProdutosController::class, 'store'])->name('store');
+        Route::put('update', [ProdutosController::class, 'update'])->name('update');
+        Route::delete('destroy', [ProdutosController::class, 'destroy'])->name('destroy');
     });
 });

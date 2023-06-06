@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h1>Página de categoria</h1>
+            <h1>Gestão de Categoria</h1>
             <button class="btn btn-primary mr-0" data-bs-toggle="modal" data-bs-target="#modalCreateCategoria"><i class="fa fa-plus"></i> Adicionar categoria</button>
         </div>
         <div class="card-body">
@@ -24,11 +24,11 @@
                             <td class="text-center align-middle">{{ $categoria->nome }}</td>
                             <td class="text-center align-middle">{{ $categoria->descricao }}</td>
                             <td class="text-center align-middle">
-                                <img src="{{ asset('assets/uploads/categoria/' . $categoria->imagem) }}" alt="foto" class="w-25">
+                                <img src="{{ asset('assets/uploads/categoria/' . $categoria->imagem) }}" alt="foto" class="img-circle w-25">
                             </td>
                             <td class="text-center align-middle">
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdateCategoria" data-dados="{{ $categoria }}">Atualizar</button>
-                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteCategoria" data-id="{{ $categoria->id }}">Excluir</button>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdateCategoria" data-dados="{{ $categoria }}"><i class="fa fa-pen"></i></button>
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteCategoria" data-id="{{ $categoria->id }}"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                     @empty
