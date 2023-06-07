@@ -7,7 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>
+        @yield("title")
+    </title>
 
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap5.css') }}">
     <link href="{{ asset('frontend/css/select2.min.css') }}" rel="stylesheet">
@@ -20,32 +22,21 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 </head>
 <body>
-    <div class="wrapper">
-        @include('layouts.inc.sidebar')
-        <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
-            @include('layouts.inc.adminnav')
-            @yield('content')
-            @include('layouts.inc.adminfooter')
-        </main>
-    </div>
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
+        @yield('content')
+    </main>
 
     @yield('modals')
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/jquery-3.6.4.min.js') }}"></script>
     <script src="{{ asset('frontend/js/select2.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.mask.min.js') }}"></script>
-
-    <script src="{{ asset('admin/js/core/popper.min.js') }}"></script>
-    <script src="{{ asset('admin/js/core/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('admin/js/plugins/perfect-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('admin/js/plugins/smooth-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('admin/js/plugins/chartjs.min.js') }}"></script>
 
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
