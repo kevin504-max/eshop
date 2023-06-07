@@ -25,6 +25,6 @@ class importProducts extends Command
      */
     public function handle()
     {
-        return app('App\Http\Controllers\Admin\ProdutosController')->getProdutosFromWeb();
+        return app('App\Http\Controllers\Admin\ProductController')->getProductsFromWeb();
     }
 }

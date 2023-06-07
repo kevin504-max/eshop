@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\FrontEndController;
-use App\Http\Controllers\Admin\CategoriasController;
-use App\Http\Controllers\Admin\ProdutosController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,17 +29,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', [FrontEndController::class, 'index']);
 
-    Route::name('categorias.')->prefix('categorias')->group(function () {
-        Route::get('index', [CategoriasController::class, 'index'])->name('index');
-        Route::post('store', [CategoriasController::class, 'store'])->name('store');
-        Route::put('update', [CategoriasController::class, 'update'])->name('update');
-        Route::delete('destroy', [CategoriasController::class, 'destroy'])->name('destroy');
+    Route::name('categories.')->prefix('categories')->group(function () {
+        Route::get('index', [CategoryController::class, 'index'])->name('index');
+        Route::post('store', [CategoryController::class, 'store'])->name('store');
+        Route::put('update', [CategoryController::class, 'update'])->name('update');
+        Route::delete('destroy', [CategoryController::class, 'destroy'])->name('destroy');
     });
 
-    Route::name('produtos.')->prefix('produtos')->group(function () {
-        Route::get('index', [ProdutosController::class, 'index'])->name('index');
-        Route::post('store', [ProdutosController::class, 'store'])->name('store');
-        Route::put('update', [ProdutosController::class, 'update'])->name('update');
-        Route::delete('destroy', [ProdutosController::class, 'destroy'])->name('destroy');
+    Route::name('products.')->prefix('products')->group(function () {
+        Route::get('index', [ProductController::class, 'index'])->name('index');
+        Route::post('store', [ProductController::class, 'store'])->name('store');
+        Route::put('update', [ProductController::class, 'update'])->name('update');
+        Route::delete('destroy', [ProductController::class, 'destroy'])->name('destroy');
     });
 });

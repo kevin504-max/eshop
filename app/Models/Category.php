@@ -5,21 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categoria extends Model
+class Category extends Model
 {
     use HasFactory;
 
-    protected $table = "categorias";
-
+    protected $table = "categories";
     protected $fillable = [
-        "nome",
+        "name",
         "slug",
-        "descricao",
+        "description",
         "status",
         "popular",
-        "imagem",
-        "meta_titulo",
-        "meta_descricao",
+        "image",
+        "meta_title",
+        "meta_description",
         "meta_keywords"
     ];
 }

@@ -17,19 +17,19 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white " href="{{ route('categorias.index') }}">
+                <a class="nav-link text-white " href="{{ route('categories.index') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">dashboard</i>
                     </div>
-                    <span class="nav-link-text ms-1">Categorias</span>
+                    <span class="nav-link-text ms-1">Categories</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white " href="{{ route('produtos.index') }}">
+                <a class="nav-link text-white " href="{{ route('products.index') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">shopping_cart</i>
                     </div>
-                    <span class="nav-link-text ms-1">Produtos</span>
+                    <span class="nav-link-text ms-1">Products</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -40,7 +40,7 @@
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">login</i>
                     </div>
-                    <span class="nav-link-text ms-1">Sair</span>
+                    <span class="nav-link-text ms-1">Logout</span>
                 </a>
             </li>
         </ul>
