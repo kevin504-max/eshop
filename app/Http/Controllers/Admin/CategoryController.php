@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
+    protected $directory = "publicassets/uploads/category/";
+
     public function index () {
         try {
             $categories = Category::all();
@@ -27,7 +29,7 @@ class CategoryController extends Controller
                 $file = $request->file("image");
                 $ext = $file->getClientOriginalExtension();
                 $filename = time() . "." . $ext;
-                $file->move("assets/uploads/category/", $filename);
+                $file->move($this->directory, $filename);
                 $category->image = $filename;
             }
 
@@ -53,7 +55,7 @@ class CategoryController extends Controller
             $category = Category::findOrFail($request->id);
 
             if ($request->hasFile("image")) {
-                $path = "assets/uploads/category/" . $category->imagem;
+                $path = $this->directory . $category->imagem;
 
                 if (File::exists($path)) {
                     File::delete($path);
@@ -62,7 +64,7 @@ class CategoryController extends Controller
                 $file = $request->file("image");
                 $ext = $file->getClientOriginalExtension();
                 $filename = time() . "." . $ext;
-                $file->move("assets/uploads/category/", $filename);
+                $file->move($this->directory, $filename);
                 $category->image = $filename;
             }
 
@@ -88,7 +90,7 @@ class CategoryController extends Controller
             $category = Category::findOrFail($request->id);
 
             if ($category->image) {
-                $path = "assets/uploads/category/" . $category->image;
+                $path = $this->directory . $category->image;
 
                 if (File::exists($path)) {
                     File::delete($path);

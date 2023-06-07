@@ -11,10 +11,13 @@ use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
+    protected $directory = "public/assets/uploads/product/";
+
     public function index() {
         try {
             $products = Product::all();
             $categories = Category::where("status", 1)->get();
+
             return view('admin.product.index', compact('products', 'categories'));
         } catch (\Throwable $th) {
             report ($th);
@@ -31,7 +34,7 @@ class ProductController extends Controller
                 $file = $request->file("thumbnail");
                 $ext = $file->getClientOriginalExtension();
                 $filename = time() . "." . $ext;
-                $file->move("assets/uploads/product/", $filename);
+                $file->move($this->directory, $filename);
                 $product->thumbnail = $filename;
             }
 
@@ -41,7 +44,7 @@ class ProductController extends Controller
                 foreach ($request->file("images") as $file) {
                     $ext = $file->getClientOriginalExtension();
                     $filename = time() . "." . $ext;
-                    $file->move("assets/uploads/product/", $filename);
+                    $file->move($this->directory, $filename);
                     $images[] = $filename;
                 }
 
@@ -77,7 +80,7 @@ class ProductController extends Controller
             $category = Category::findOrFail($request->category_id);
 
             if ($request->hasFile("thumbnail")) {
-                $path = "assets/uploads/product/" . $product->thumbnail;
+                $path = $this->directory . $product->thumbnail;
 
                 if (File::exists($path)) {
                     File::delete($path);
@@ -86,12 +89,12 @@ class ProductController extends Controller
                 $file = $request->file("thumbnail");
                 $ext = $file->getClientOriginalExtension();
                 $filename = time() . "." . $ext;
-                $file->move("assets/uploads/product/", $filename);
+                $file->move($this->directory, $filename);
                 $product->thumbnail = $filename;
             }
 
             if ($request->hasFile("images")) {
-                $path = "assets/uploads/product/" . $product->images;
+                $path = $this->directory . $product->images;
 
                 if (File::exists($path)) {
                     File::delete($path);
@@ -102,7 +105,7 @@ class ProductController extends Controller
                 foreach ($request->file("images") as $file) {
                     $ext = $file->getClientOriginalExtension();
                     $filename = time() . "." . $ext;
-                    $file->move("assets/uploads/product/", $filename);
+                    $file->move($this->directory, $filename);
                     $images[] = $filename;
                 }
 
@@ -154,7 +157,7 @@ class ProductController extends Controller
     }
 
     public function storeProducts($array) {
-        echo "\nLoading...\n";
+        echo "\nLoading...";
 
         try {
             foreach ($array["products"] as $product) {
@@ -173,6 +176,28 @@ class ProductController extends Controller
                     "thumbnail" => $product["thumbnail"],
                     "images" => json_encode($product["images"])
                 ];
+
+                if (!is_dir($this->directory)) {
+                    mkdir($this->directory, 0777, true);
+                }
+
+                // save image in local storage
+                $file = file_get_contents($product["thumbnail"]);
+                $ext = explode(".", $product["thumbnail"]);
+                $filename = time() . "." . $ext[count($ext) - 1];
+                file_put_contents($this->directory . $filename, $file);
+                $datas["thumbnail"] = $filename;
+
+                // save images in local storage
+                $images = [];
+                foreach ($product["images"] as $image) {
+                    $file = file_get_contents($image);
+                    $ext = explode(".", $image);
+                    $filename = time() . "." . $ext[count($ext) - 1];
+                    file_put_contents($this->directory . $filename, $file);
+                    $images[] = $filename;
+                }
+                $datas["images"] = json_encode($images);
 
                 Product::create($datas);
             }
