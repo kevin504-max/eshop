@@ -29,6 +29,7 @@
                     @endif
                     <div class="row mt-2">
                         <div class="col-md-2">
+                            <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
                             <label for="quantity">Quantity</label>
                             <div class="input-group text-center mb-3">
                                 <span class="input-group-prepend bg-white border-0 mt-3">
@@ -43,7 +44,7 @@
                         <div class="col-md-10 mt-3">
                             <br>
                             <button type="button" class="btn btn-success me-3 float-start">Add to Whilist <i class="fa fa-heart"></i></button>
-                            <button type="button" class="btn btn-primary me-3 float-start">Add to Cart <i class="fa fa-shopping-cart"></i></button>
+                            <button id="addCartBtn" type="button" class="btn btn-primary me-3 float-start">Add to Cart <i class="fa fa-shopping-cart"></i></button>
                         </div>
                     </div>
                 </div>
@@ -63,6 +64,37 @@
 @section('scripts')
 <script>
     $(document).ready(function () {
+        $("#addCartBtn").on("click", function (event) {
+            event.preventDefault();
+
+            // var product_id = $("#product_id").val();
+            // var quantity = $("#quantity").val();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                method: "POST",
+                url: "/add-to-cart",
+                data: {
+                    'product_id': $("#product_id").val(),
+                    'quantity': $("#quantity").val(),
+                },
+                success: function (response) {
+                    Swal.fire({
+                        title: response.message,
+                        icon: response.status,
+                        showConfirmButton: false,
+                        timer: 3500
+                    });
+
+                }
+            })
+        });
+
         $("#button-increment").on("click", function (event) {
             event.preventDefault();
 
