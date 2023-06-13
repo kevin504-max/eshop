@@ -10,18 +10,53 @@ use Illuminate\Http\Request;
 class FrontEndController extends Controller
 {
     public function index() {
-        $featureds = Product::orderBy("discountPercentage", "desc")->take(3)->get();
-        $most_rated = Product::orderBy("rating", "desc")->get();
-        $popular_categories = Category::where('popular', 1)->get();
+        try {
+            $featureds = Product::orderBy("discountPercentage", "desc")->take(3)->get();
+            $most_rated = Product::orderBy("rating", "desc")->get();
+            $popular_categories = Category::where('popular', 1)->get();
 
-        return view('frontend.index', compact('featureds', 'most_rated', 'popular_categories'));
+            return view('frontend.index', compact('featureds', 'most_rated', 'popular_categories'));
+        } catch (\Throwable $th) {
+            report ($th);
+            return redirect()->back()->with('error', 'Something went wrong! Try again.');
+        }
     }
 
     public function category() {
-        $categories = Category::where('status', 0)->get();
-        return view('frontend.category', compact('categories'));
+        try {
+            $categories = Category::where('status', 0)->get();
+            return view('frontend.category', compact('categories'));
+        } catch (\Throwable $th) {
+            report ($th);
+            return redirect()->back()->with('error', 'Something went wrong! Try again.');
+        }
     }
 
+    public function viewCategory($slug) {
+        try {
+            if (Category::where('slug', $slug)->exists()) {
+                $category = Category::where('slug', $slug)->first();
+                $products = Product::where('category_id', $category->id)->get();
+
+                return view('frontend.products.index', compact('category', 'products'));
+            }
+
+            return reidrect('/')->with('error', 'Slug does not match any category.');
+        } catch (\Throwable $th) {
+            report ($th);
+            return redirect()->back()->with('error', 'Something went wrong! Try again.');
+        }
+    }
+    // test function
+    public function productCategory() {
+        $products = Product::all();
+
+        foreach ($products as $product) {
+            $product->category_id = rand(121, 130);
+            $product->save();
+        }
+    }
+    // test function
     public function createCategories() {
         for ($i = 0; $i < 10; $i++) {
 

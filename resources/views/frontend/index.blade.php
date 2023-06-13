@@ -7,6 +7,7 @@
 <div class="py-5">
     <div class="container">
         <div class="row">
+            <h2>Better Rated Products</h2>
             <div class="owl-carousel rated-carousel owl-theme">
                 @foreach($most_rated as $product)
                 <div class="item">
@@ -27,6 +28,7 @@
 <div class="py-5">
     <div class="container">
         <div class="row">
+            <h2>Most Popular Categories</h2>
             <div class="owl-carousel rated-carousel owl-theme">
                 @foreach($popular_categories as $category)
                 <div class="item">
