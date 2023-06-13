@@ -99,7 +99,6 @@ html, body, #root {
 
 .img-carousel {
     width: 100%;
-    height: auto;
-    max-height: 400px;
-    object-fit: fill;
+    height: 400px;
+    object-fit: cover;
 }
