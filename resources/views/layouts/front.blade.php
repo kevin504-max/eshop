@@ -19,11 +19,12 @@
     <link href="{{ asset('admin/css/nucleo-svg.css') }}" rel="stylesheet" />
 
     <link rel="stylesheet" href="{{ asset('admin/css/material-dashboard.css') }}">
-
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
+    {{-- Owl Carousel --}}
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}">
+
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 </head>
 <body>
@@ -43,7 +44,6 @@
     <script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
 
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @if (session("status"))
