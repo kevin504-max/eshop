@@ -29,7 +29,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/dashboard', 'Admin\FrontEndController@index');
+    Route::get('/dashboard', [App\Http\Controllers\Admin\FrontEndController::class, 'index']);
 
     Route::name('categories.')->prefix('categories')->group(function () {
         Route::get('index', [CategoryController::class, 'index'])->name('index');

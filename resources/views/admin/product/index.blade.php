@@ -32,7 +32,7 @@
                             <td class="text-center align-middle">{{ $product->rating }}</td>
                             <td class="text-center align-middle">{{ $product->stock }}</td>
                             <td class="text-center align-middle">
-                                <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="image" class="img-circle w-25">
+                                <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="image" class="img-circle w-25" style="height: 100px;">
                             </td>
                             <td class="text-center align-middle">
                                 <button class="btn btn-primary" type="button" data-bs-target="#modalUpdateProducts" data-bs-toggle="modal" data-product="{{ $product }}"><i class="fa fa-pen"></i></button>

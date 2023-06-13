@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
-    protected $directory = "publicassets/uploads/category/";
+    protected $directory = "assets/uploads/category/";
 
     public function index () {
         try {
@@ -55,7 +55,7 @@ class CategoryController extends Controller
             $category = Category::findOrFail($request->id);
 
             if ($request->hasFile("image")) {
-                $path = $this->directory . $category->imagem;
+                $path = $this->directory . $category->image;
 
                 if (File::exists($path)) {
                     File::delete($path);

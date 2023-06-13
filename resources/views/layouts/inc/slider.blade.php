@@ -5,9 +5,9 @@
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
-        @foreach($highlights as $product)
-            <div class="carousel-item @if($loop->first) active @endif">
-                <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="image" class="d-block w-100 img-carousel">
+        @foreach($featureds as $product)
+            <div class="carousel-item @if($loop->first) active @endif height-img">
+                <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="image" class="d-block w-100" style="height: 500px;">
             </div>
         @endforeach
     </div>

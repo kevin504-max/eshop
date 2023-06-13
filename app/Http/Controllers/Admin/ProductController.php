@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
-    protected $directory = "public/assets/uploads/product/";
+    protected $directory = "assets/uploads/product/";
 
     public function index() {
         try {
@@ -177,15 +177,15 @@ class ProductController extends Controller
                     "images" => json_encode($product["images"])
                 ];
 
-                if (!is_dir($this->directory)) {
-                    mkdir($this->directory, 0777, true);
+                if (!is_dir("public/" . $this->directory)) {
+                    mkdir("public/" . $this->directory, 0777, true);
                 }
 
                 // save image in local storage
                 $file = file_get_contents($product["thumbnail"]);
                 $ext = explode(".", $product["thumbnail"]);
                 $filename = time() . "." . $ext[count($ext) - 1];
-                file_put_contents($this->directory . $filename, $file);
+                file_put_contents("public/" . $this->directory . $filename, $file);
                 $datas["thumbnail"] = $filename;
 
                 // save images in local storage
@@ -194,7 +194,7 @@ class ProductController extends Controller
                     $file = file_get_contents($image);
                     $ext = explode(".", $image);
                     $filename = time() . "." . $ext[count($ext) - 1];
-                    file_put_contents($this->directory . $filename, $file);
+                    file_put_contents("public/" . $this->directory . $filename, $file);
                     $images[] = $filename;
                 }
                 $datas["images"] = json_encode($images);
@@ -207,6 +207,6 @@ class ProductController extends Controller
             echo "\n " . $th->getMessage() . "\n";
         }
 
-        echo "\End of process!\n";
+        echo "\nEnd of process!\n";
     }
 }

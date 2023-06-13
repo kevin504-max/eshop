@@ -22,7 +22,8 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 </head>
 <body>
@@ -38,6 +39,8 @@
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('frontend/js/select2.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.mask.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery-3.6.4.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
 
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}

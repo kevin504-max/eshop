@@ -56,6 +56,15 @@ html, body, #root {
     display: block;
 }
 
+.modal-header span {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+    color: #344767;
+    text-shadow: 0 1px 0 #fff;
+    border: none;
+}
+
 .animated.modal.fade .modal-dialog {
     -webkit-transform: none;
     -ms-transform: none;
@@ -97,8 +106,9 @@ html, body, #root {
   line-height: 32px;
 }
 
-.img-carousel {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
+.height-img > img {
+    max-height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
 }
