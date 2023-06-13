@@ -41,7 +41,28 @@ class FrontEndController extends Controller
                 return view('frontend.products.index', compact('category', 'products'));
             }
 
-            return reidrect('/')->with('error', 'Slug does not match any category.');
+            return redirect('/')->with('error', 'Slug does not match any category.');
+        } catch (\Throwable $th) {
+            report ($th);
+            return redirect()->back()->with('error', 'Something went wrong! Try again.');
+        }
+    }
+
+    public function viewProduct($category_slug, $product_title) {
+        try {
+            $category = Category::where('slug', $category_slug)->first();
+
+            if (!isset($category)) {
+                return redirect('/')->with('error', 'No such category found...');
+            }
+
+            $product = Product::where('title', $product_title)->first();
+
+            if (!$product) {
+                return redirect('/')->with('error', 'The link was broken.');
+            }
+
+            return view('frontend.products.view', compact('category', 'product'));
         } catch (\Throwable $th) {
             report ($th);
             return redirect()->back()->with('error', 'Something went wrong! Try again.');

@@ -10,16 +10,16 @@
             <h2>Better Rated Products</h2>
             <div class="owl-carousel rated-carousel owl-theme">
                 @foreach($most_rated as $product)
-                <div class="item">
-                    <div class="card height-img">
-                        <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="Product image" class="d-block w-100" style="height: 200px;">
-                        <div class="card-body">
-                            <h5>{{ $product->title }}</h5>
-                            <small class="float-start">{{ "$" . ($product->price - $product->discountPercentage) }}</small>
-                            <small class="float-end"> <s> {{ "$" . $product->price }}</s></small>
+                    <div class="item">
+                        <div class="card height-img">
+                            <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="Product image" class="d-block w-100" style="height: 200px;">
+                            <div class="card-body">
+                                <h5>{{ $product->title }}</h5>
+                                <small class="float-start">{{ "$" . ($product->price - $product->discountPercentage) }}</small>
+                                <small class="float-end"> <s> {{ "$" . $product->price }}</s></small>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
@@ -31,16 +31,18 @@
             <h2>Most Popular Categories</h2>
             <div class="owl-carousel rated-carousel owl-theme">
                 @foreach($popular_categories as $category)
-                <div class="item">
-                    <div class="card height-img">
-                        <img src="{{ $category->image }}" alt="Category image" class="d-block w-100" style="height: 200px;">
-                        {{-- <img src="{{ asset('assets/uploads/category/' . $category->image) }}" alt="Category image" class="d-block w-100" style="height: 200px;"> --}}
-                        <div class="card-body">
-                            <h5>{{ $category->title }}</h5>
-                            <p>{{ $category->description }}</p>
+                    <a href="{{ url('category/' . $category->slug) }}">
+                        <div class="item">
+                            <div class="card height-img">
+                                <img src="{{ $category->image }}" alt="Category image" class="d-block w-100" style="height: 200px;">
+                                {{-- <img src="{{ asset('assets/uploads/category/' . $category->image) }}" alt="Category image" class="d-block w-100" style="height: 200px;"> --}}
+                                <div class="card-body">
+                                    <h5>{{ $category->title }}</h5>
+                                    <p>{{ $category->description }}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </a>
                 @endforeach
             </div>
         </div>

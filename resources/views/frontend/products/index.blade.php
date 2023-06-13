@@ -3,20 +3,27 @@
 @section('title', $category->name)
 
 @section('content')
+<div class="py-3 mb-4 shadow-sm bg-warning border-top">
+    <div class="container">
+        <h6 class="mb-0"> Collections / {{ $category->name }}</h6>
+    </div>
+</div>
 <div class="py-5">
     <div class="container">
         <div class="row">
             <h2>{{ $category->name }}</h2>
             @foreach($products as $product)
                 <div class="col-md-3 mb-3">
-                    <div class="card height-img">
-                        <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="Product image" class="d-block w-100" style="height: 200px;">
-                        <div class="card-body">
-                            <h5>{{ $product->title }}</h5>
-                            <small class="float-start">{{ "$" . ($product->price - $product->discountPercentage) }}</small>
-                            <small class="float-end"> <s> {{ "$" . $product->price }}</s></small>
+                    <a href="{{ url('category/' . $category->slug . '/' . $product->title) }}">
+                        <div class="card height-img">
+                            <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="Product image" class="d-block w-100" style="height: 200px;">
+                            <div class="card-body">
+                                <h5>{{ $product->title }}</h5>
+                                <small class="float-start">{{ "$" . ($product->price - $product->discountPercentage) }}</small>
+                                <small class="float-end"> <s> {{ "$" . $product->price }}</s></small>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>
