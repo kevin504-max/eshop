@@ -24,6 +24,26 @@
         </div>
     </div>
 </div>
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="owl-carousel rated-carousel owl-theme">
+                @foreach($popular_categories as $category)
+                <div class="item">
+                    <div class="card height-img">
+                        <img src="{{ $category->image }}" alt="Category image" class="d-block w-100" style="height: 200px;">
+                        {{-- <img src="{{ asset('assets/uploads/category/' . $category->image) }}" alt="Category image" class="d-block w-100" style="height: 200px;"> --}}
+                        <div class="card-body">
+                            <h5>{{ $category->title }}</h5>
+                            <p>{{ $category->description }}</p>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('scripts')
