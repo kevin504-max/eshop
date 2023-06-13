@@ -96,3 +96,10 @@ html, body, #root {
 .select2-container--default .select2-selection--single .select2-selection__rendered {
   line-height: 32px;
 }
+
+.img-carousel {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: fill;
+}

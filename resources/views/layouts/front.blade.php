@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 </head>
 <body>
+    @include('layouts.inc.frontnavbar')
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         @yield('content')
     </main>
