@@ -51,7 +51,7 @@
         <div class="col-lg-12 hr-line"></div>
         <div class="card-footer">
             <h6>Total Price: ${{ $total }}
-                <button type="submit" class="btn btn-outline-success float-end">Proceed to Checkout</button>
+                <a href="{{ url('checkout') }}" type="button" class="btn btn-outline-success float-end">Proceed to Checkout</a>
             </h6>
         </div>
     </div>

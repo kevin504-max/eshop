@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\FrontEndController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,7 @@ Route::post('update-cart', [CartController::class, 'updateCart']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('cart', [CartController::class, 'viewCart']);
+    Route::get('checkout', [CheckoutController::class, 'index']);
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
