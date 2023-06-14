@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
@@ -68,32 +69,32 @@ class FrontEndController extends Controller
             return redirect()->back()->with('error', 'Something went wrong! Try again.');
         }
     }
-    // test function
-    public function productCategory() {
+
+    // TEST FUNCTION
+    public function createCategories() {
+        // $categories = Product::pluck('category')->unique();
+
+        // foreach($categories as $category) {
+        //     $datas = [
+        //         "name" => $category,
+        //         "slug" => Str::slug($category, '_'),
+        //         "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+        //         "status" => rand(0, 1),
+        //         "popular" => rand(0, 1),
+        //         "image" => "https://picsum.photos/id/" . rand(1, 100) . "/200/300",
+        //         "meta_title" => "Category ",
+        //         "meta_description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+        //         "meta_keywords" => "Category"
+        //     ];
+
+        //     Category::create($datas);
+        // }
         $products = Product::all();
 
-        foreach ($products as $product) {
-            $product->category_id = rand(121, 130);
+        foreach($products as $product) {
+            $product->category_id = Category::where('name', $product->category)->first()->id;
             $product->save();
         }
-    }
-    // test function
-    public function createCategories() {
-        for ($i = 0; $i < 10; $i++) {
 
-            $datas = [
-                "name" => "Category " . $i,
-                "slug" => "category_" . $i,
-                "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-                "status" => rand(0, 1),
-                "popular" => rand(0, 1),
-                "image" => "https://picsum.photos/id/" . rand(1, 100) . "/200/300",
-                "meta_title" => "Category " . $i,
-                "meta_description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-                "meta_keywords" => "Category " . $i
-            ];
-
-            Category::create($datas);
-        }
     }
 }

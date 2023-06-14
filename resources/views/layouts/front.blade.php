@@ -46,7 +46,7 @@
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    @if (session("status"))
+    @if (session("status") && session("message"))
         <script>
             Swal.fire({
                 title: "{{ session("message") }}",

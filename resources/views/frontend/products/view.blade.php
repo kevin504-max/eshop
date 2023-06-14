@@ -19,7 +19,7 @@
                     <h2 class="mb-0">{{ $product->title }} <label class="float-end badge bg-danger m-2" style="font-size: 0.8rem">Trending</label></h2>
                     <div class="hr-line col-lg-12"></div>
                     <label class="me-3">Original Price: <s>${{ $product->price }}</s></label>
-                    <label class="fw-bold">Selling Price: <s>${{ ($product->price - $product->discountPercentage) }}</s></label>
+                    <label class="fw-bold">Selling Price: ${{ ($product->price - $product->discountPercentage) }}</label>
                     <p class="mt-3">{!! $product->description !!}</p>
                     <div class="hr-line col-lg-12"></div>
                     @if ($product->stock > 0)
