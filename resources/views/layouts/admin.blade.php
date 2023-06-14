@@ -57,7 +57,7 @@
                 title: "{{ session("message") }}",
                 icon: "{{ session("status") }}",
                 showConfirmButton: false,
-                timer: 3500
+                timer: 2500
             });
         </script>
     @endif

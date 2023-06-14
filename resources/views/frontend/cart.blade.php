@@ -28,16 +28,20 @@
                     </div>
                     <div class="col-md-3">
                         <input type="hidden" class="product_id" value="{{ $item->product_id }}">
-                        <label for="quantity">Quantity</label>
-                        <div class="input-group text-center justify-content-center mb-3" style="width: 120px;">
-                            <span class="input-group-prepend bg-white border-0 mt-3">
-                                <button class="btn btn-sm btn-outline-secondary changeQuantity decrement-btn" type="button">-</button>
-                            </span>
-                            <input type="text" class="form-control text-center border-0 qty-input" id="quantity" name="quantity" value="{{ $item->items }}">
-                            <span class="input-group-append bg-white border-0 mt-3">
-                                <button class="btn btn-sm btn-outline-secondary changeQuantity increment-btn" type="button">+</button>
-                            </span>
-                        </div>
+                        @if ($item->product->stock > $item->items)
+                            <label for="quantity">Quantity</label>
+                            <div class="input-group text-center justify-content-center mb-3" style="width: 120px;">
+                                <span class="input-group-prepend bg-white border-0 mt-3">
+                                    <button class="btn btn-sm btn-outline-secondary changeQuantity decrement-btn" type="button">-</button>
+                                </span>
+                                <input type="text" class="form-control text-center border-0 qty-input" id="quantity" name="quantity" value="{{ $item->items }}">
+                                <span class="input-group-append bg-white border-0 mt-3">
+                                    <button class="btn btn-sm btn-outline-secondary changeQuantity increment-btn" type="button">+</button>
+                                </span>
+                            </div>
+                        @else
+                            <h6>Out of Stock</h6>
+                        @endif
                     </div>
                     <div class="col-md-2 mt-5">
                         <button class="btn btn-danger delete-cart-item" type="button"><i class="fa fa-trash"></i> Remove</button>

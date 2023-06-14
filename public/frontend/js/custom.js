@@ -23,7 +23,7 @@ $(document).ready(function() {
                     title: response.message,
                     icon: response.status,
                     showConfirmButton: false,
-                    timer: 3500
+                    timer: 2500
                 });
             }
         });
@@ -79,7 +79,7 @@ $(document).ready(function() {
                     title: response.message,
                     icon: response.status,
                     showConfirmButton: false,
-                    timer: 3500
+                    timer: 2500
                 });
                 window.location.reload();
             }

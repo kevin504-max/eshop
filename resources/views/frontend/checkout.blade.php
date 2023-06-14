@@ -3,6 +3,14 @@
 @section('title', 'Checkout')
 
 @section('content')
+<div class="py-3 mb-4 shadow-sm bg-warning border-top">
+    <div class="container">
+        <h6 class="mb-0">
+            <a href="{{ url('/') }}"> Home </a> /
+            <a href="{{ url('checkout') }}"> Checkout </a>
+        </h6>
+    </div>
+</div>
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-7">
@@ -63,7 +71,9 @@
                         </tbody>
                     </table>
                     <div class="col-lg-12 hr-line"></div>
-                    <button class="btn btn-primary float-end">Place Order</button>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-behance w-80">Place Order</button>
+                    </div>
                 </div>
             </div>
         </div>
