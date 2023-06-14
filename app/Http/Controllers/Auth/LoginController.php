@@ -32,9 +32,9 @@ class LoginController extends Controller
     protected function authenticated()
     {
         if (Auth::user()->role_as == '1') {
-            return redirect('dashboard')->with('status', 'Bem vindo ao painel de administrador');
+            return redirect('dashboard')->with('status', 'Welcome to Admin Panel');
         } elseif (Auth::user()->role_as == '0') {
-            return redirect('home')->with('status', 'Bem vindo ao painel de usuário');
+            return redirect('/')->with('status', 'Welcome to User Panel');
         }
     }
 

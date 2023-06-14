@@ -48,6 +48,7 @@
 
     @if (session("status") && session("message"))
         <script>
+            console.log("{{ session("message") }}");
             Swal.fire({
                 title: "{{ session("message") }}",
                 icon: "{{ session("status") }}",
