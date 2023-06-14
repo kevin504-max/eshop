@@ -46,6 +46,8 @@
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script src="{{ asset('frontend/js/custom.js') }}"></script>
+
     @if (session("status") && session("message"))
         <script>
             console.log("{{ session("message") }}");

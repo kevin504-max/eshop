@@ -31,9 +31,11 @@ Route::get('category/{slug}/{product_title}', [FrontEndController::class, 'viewP
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('add-to-cart', [CartController::class, 'addProduct']);
+Route::post('delete-cart-item', [CartController::class, 'removeProduct']);
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('add-to-cart', [CartController::class, 'addProduct'])->name('addProduct');
+    Route::get('cart', [CartController::class, 'viewCart']);
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
