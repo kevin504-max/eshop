@@ -14,6 +14,9 @@
 <div class="container my-5">
     <div class="card shadow">
         <div class="card-body">
+            @php
+                $total = 0;
+            @endphp
             @foreach ($cartItems as $item)
                 <div class="row mb-3 product_data">
                     <div class="col-md-2 height-img">
@@ -21,17 +24,18 @@
                     </div>
                     <div class="col-md-5 mt-5">
                         <h4>{{ $item->product->title }}</h4>
+                        <h4>${{ ($item->product->price - $item->product->discountPercentage) }}</h4>
                     </div>
                     <div class="col-md-3">
                         <input type="hidden" class="product_id" value="{{ $item->product_id }}">
                         <label for="quantity">Quantity</label>
                         <div class="input-group text-center justify-content-center mb-3" style="width: 120px;">
                             <span class="input-group-prepend bg-white border-0 mt-3">
-                                <button class="btn btn-sm btn-outline-secondary decrement-btn" type="button">-</button>
+                                <button class="btn btn-sm btn-outline-secondary changeQuantity decrement-btn" type="button">-</button>
                             </span>
                             <input type="text" class="form-control text-center border-0 qty-input" id="quantity" name="quantity" value="{{ $item->items }}">
                             <span class="input-group-append bg-white border-0 mt-3">
-                                <button class="btn btn-sm btn-outline-secondary increment-btn" type="button">+</button>
+                                <button class="btn btn-sm btn-outline-secondary changeQuantity increment-btn" type="button">+</button>
                             </span>
                         </div>
                     </div>
@@ -39,7 +43,16 @@
                         <button class="btn btn-danger delete-cart-item" type="button"><i class="fa fa-trash"></i> Remove</button>
                     </div>
                 </div>
+                @php
+                    $total += (($item->product->price - $item->product->discountPercentage) * $item->items);
+                @endphp
             @endforeach
+        </div>
+        <div class="col-lg-12 hr-line"></div>
+        <div class="card-footer">
+            <h6>Total Price: ${{ $total }}
+                <button type="submit" class="btn btn-outline-success float-end">Proceed to Checkout</button>
+            </h6>
         </div>
     </div>
 </div>

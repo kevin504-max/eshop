@@ -72,23 +72,23 @@ class FrontEndController extends Controller
 
     // TEST FUNCTION
     public function createCategories() {
-        // $categories = Product::pluck('category')->unique();
+        $categories = Product::pluck('category')->unique();
 
-        // foreach($categories as $category) {
-        //     $datas = [
-        //         "name" => $category,
-        //         "slug" => Str::slug($category, '_'),
-        //         "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-        //         "status" => rand(0, 1),
-        //         "popular" => rand(0, 1),
-        //         "image" => "https://picsum.photos/id/" . rand(1, 100) . "/200/300",
-        //         "meta_title" => "Category ",
-        //         "meta_description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-        //         "meta_keywords" => "Category"
-        //     ];
+        foreach($categories as $category) {
+            $datas = [
+                "name" => $category,
+                "slug" => Str::slug($category, '_'),
+                "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+                "status" => rand(0, 1),
+                "popular" => rand(0, 1),
+                "image" => "https://picsum.photos/id/" . rand(1, 100) . "/200/300",
+                "meta_title" => "Category ",
+                "meta_description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+                "meta_keywords" => "Category"
+            ];
 
-        //     Category::create($datas);
-        // }
+            Category::create($datas);
+        }
         $products = Product::all();
 
         foreach($products as $product) {

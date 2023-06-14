@@ -163,9 +163,25 @@ class ProductController extends Controller
             foreach ($array["products"] as $product) {
                 echo ".";
 
+                if (Category::all() == null) {
+                    $data = [
+                        "name" => "",
+                        "slug" => "",
+                        "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+                        "status" => 0,
+                        "popular" => 0,
+                        "image" => "https://picsum.photos/id/" . rand(1, 100) . "/200/300",
+                        "meta_title" => "Category ",
+                        "meta_description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+                        "meta_keywords" => "Category"
+                    ];
+
+                    Category::create($data);
+                }
+
                 $datas = [
                     "title" => $product["title"],
-                    "category_id" => -1,
+                    "category_id" => 1,
                     "description" => $product["description"],
                     "price" => $product["price"],
                     "discountPercentage" => $product["discountPercentage"],

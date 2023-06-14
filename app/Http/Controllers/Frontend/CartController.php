@@ -48,6 +48,27 @@ class CartController extends Controller
         return view('frontend.cart', compact('cartItems'));
     }
 
+    public function updateCart(Request $request) {
+        try {
+            if (Auth::check()) {
+                if (Cart::where('product_id', $request->product_id)->where('user_id', Auth::id())->exists()) {
+                    $cart = Cart::where('product_id', $request->product_id)->where('user_id', Auth::id())->first();
+                    $cart->items = $request->quantity;
+                    $cart->update();
+
+                    return response()->json(['status' => 'success', 'message' => 'Cart Updated!']);
+                }
+
+                return response()->json(['status' => 'error', 'message' => 'Something went wrong! Try again.']);
+            }
+
+            return response()->json(['status' => 'error', 'message' => 'Login to Continue!']);
+        } catch (\Throwable $th) {
+            report($th);
+            return response()->json(['status' => 'error', 'message' => 'Something went wrong! Try again.']);
+        }
+    }
+
     public function removeProduct(Request $request) {
         try {
             if (Auth::check()) {
