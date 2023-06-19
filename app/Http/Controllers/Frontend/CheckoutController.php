@@ -56,6 +56,7 @@ class CheckoutController extends Controller
                 $total += ($item->product->price - $item->product->discountPercentage) * $item->items;
             }
 
+            $order->total_price = $total;
             $order->tracking_number = 'samambaia'.rand(1111, 9999);
             $order->save();
 
