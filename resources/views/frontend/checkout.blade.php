@@ -12,72 +12,75 @@
     </div>
 </div>
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-md-7">
-            <div class="card">
-                <div class="card-body">
-                    <h6>Basic Details</h6>
-                    <div class="col-lg-12 hr-line"></div>
-                    <div class="row checkout-form">
-                        <div class="col-md-6 mb-3">
-                            <label for="name">Full Name</label>
-                            <input type="text" class="form-control" value="{{ Auth::user()->name }}" readonly>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" value="{{ Auth::user()->email }}" readonly>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="phone">Phone Number</label>
-                            <input type="text" class="form-control" placeholder="Enter with your phone">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="cpf_cnpj">Document (CPF/CNPJ)</label>
-                            <input id="cpf_cnpj" name="cpf_cnpj" type="text" class="form-control mask-cpf" placeholder="000.000.000-00">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="state">State</label>
-                            <input type="text" class="form-control" placeholder="Enter with your state">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" placeholder="Enter with your city">
+    <form action="{{ url('place-order') }}" method="POST">
+        {{ csrf_field() }}
+        <div class="row">
+            <div class="col-md-7">
+                <div class="card">
+                    <div class="card-body">
+                        <h6>Basic Details</h6>
+                        <div class="col-lg-12 hr-line"></div>
+                        <div class="row checkout-form">
+                            <div class="col-md-6 mb-3">
+                                <label for="name">Full Name</label>
+                                <input type="text" class="form-control" name="username" value="{{ Auth::user()->name }}" required readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" name="email" value="{{ Auth::user()->email }}" required readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phone">Phone Number</label>
+                                <input type="text" class="form-control" name="phone" placeholder="Enter with your phone" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cpf_cnpj">Document (CPF/CNPJ)</label>
+                                <input id="cpf_cnpj" name="cpf_cnpj" type="text" name="cpf_cnpj" class="form-control mask-cpf" placeholder="000.000.000-00" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="state">State</label>
+                                <input type="text" class="form-control" name="state" placeholder="Enter with your state" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" name="city" placeholder="Enter with your city" required>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-5">
-            <div class="card">
-                <div class="card-body">
-                    <h6>Order Details</h6>
-                    <div class="col-lg-12 hr-line"></div>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th >Product</th>
-                                <th >Quantity</th>
-                                <th >Price ($)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($cartItems as $item)
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h6>Order Details</h6>
+                        <div class="col-lg-12 hr-line"></div>
+                        <table class="table table-striped">
+                            <thead>
                                 <tr>
-                                    <td class="text-center align-middle">{{ $item->product->title }}</td>
-                                    <td class="text-center align-middle">{{ $item->items }}</td>
-                                    <td class="text-center align-middle">{{ ($item->product->price - $item->product->discountPercentage) }}</td>
+                                    <th >Product</th>
+                                    <th >Quantity</th>
+                                    <th >Price ($)</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <div class="col-lg-12 hr-line"></div>
-                    <div class="d-flex justify-content-center">
-                        <button class="btn btn-behance w-80">Place Order</button>
+                            </thead>
+                            <tbody>
+                                @foreach ($cartItems as $item)
+                                    <tr>
+                                        <td class="text-center align-middle">{{ $item->product->title }}</td>
+                                        <td class="text-center align-middle">{{ $item->items }}</td>
+                                        <td class="text-center align-middle">{{ ($item->product->price - $item->product->discountPercentage) }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <div class="col-lg-12 hr-line"></div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-behance w-80">Place Order</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 @endsection
 
