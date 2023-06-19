@@ -19,6 +19,7 @@ class Order extends Model
         'cpf_cnpj',
         'phone',
         'status',
+        'total_price',
         'message',
         'tracking_number'
     ];

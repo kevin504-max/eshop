@@ -49,6 +49,13 @@ class CheckoutController extends Controller
             $order->cpf_cnpj = $request->cpf_cnpj;
             $order->state = $request->state;
             $order->city = $request->city;
+
+            // To calculate total price
+            $total = 0;
+            foreach (Cart::where('user_id', Auth::id())->get() as $item) {
+                $total += ($item->product->price - $item->product->discountPercentage) * $item->items;
+            }
+
             $order->tracking_number = 'samambaia'.rand(1111, 9999);
             $order->save();
 
