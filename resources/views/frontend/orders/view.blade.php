@@ -62,6 +62,7 @@
                                 </tbody>
                             </table>
                             <h4 class="px-2">Grand Total: <span class="float-end">${{ $order->total_price }}</span></h4>
+                            <h6 class="px-2 mt-5">Payment Mode: <span class="float-end">{{ $order->payment_mode }}</span></h6>
                         </div>
                     </div>
                 </div>

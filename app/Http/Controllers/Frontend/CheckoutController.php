@@ -90,7 +90,7 @@ class CheckoutController extends Controller
 
             Cart::destroy($cartItems);
 
-            if ($request->payment_mode == "Paid by Razorpay") {
+            if ($request->payment_mode == "Paid by Razorpay" || $request->payment_mode == "Paid by Paypal") {
                 return response()->json([
                     "status" => "success",
                     "message" => "Order placed successfully!"

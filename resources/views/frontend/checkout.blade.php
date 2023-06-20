@@ -86,8 +86,9 @@
                         <div class="col-lg-12 hr-line"></div>
                         <input type="hidden" name="payment_mode" id="payment_mode" value="COD">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success w-80">Place Order | COD</button>
-                            <button type="button" class="btn btn-primary w-80 mt-3 razorpay_btn">Pay with Razorpay</button>
+                            <button type="submit" class="btn btn-success w-100">Place Order | COD</button>
+                            <button type="button" class="btn btn-primary w-100 mt-3 razorpay_btn">Pay with Razorpay</button>
+                            <div id="paypal-button-container"></div>
                         </div>
                     </div>
                 </div>
@@ -101,6 +102,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AV42ollXW_kGfDJjZam4tzCFzH4O803b601M4zH9Bnvodio4d8ZE_4OLioViLxK40rHGH9k3Jj26f9mk&currency=BRL"></script>
 <script>
     var options = {
         onKeyPress: function (cpf, ev, el, op) {
@@ -110,6 +112,63 @@
     }
 
     $('#cpf_cnpj').length > 11 ? $('#cpf_cnpj').mask('00.000.000/0000-00', options) : $('#cpf_cnpj').mask('000.000.000-00#', options);
+
+    paypal.Buttons({
+        // Order is created on the server and the order id is returned
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: '{{ $total }}'
+              }
+            }]
+          });
+        },
+        // Finalize the transaction on the server after payer approval
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function (details) {
+            // alert ('Transaction completed by ' + details.payer.name.given_name + '!');
+
+            var username = $('.username').val();
+            var email = $('.email').val();
+            var phone = $('.phone').val();
+            var cpf_cnpj = $('.cpf_cnpj').val();
+            var state = $('.state').val();
+            var city = $('.city').val();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                method: "POST",
+                url: "/place-order",
+                data: {
+                    "username": username,
+                    "email": email,
+                    "phone": phone,
+                    "cpf_cnpj": cpf_cnpj,
+                    "state": state,
+                    "city": city,
+                    "payment_mode": "Paid by Paypal",
+                    "payment_id": details.id
+                },
+                success: function (response) {
+                    Swal.fire({
+                        icon: response.status,
+                        title: response.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    window.location.href = "/my-orders";
+                }
+            });
+          });
+        }
+      }).render('#paypal-button-container');
 </script>
 @endsection
 
