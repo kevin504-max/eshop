@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\FrontEndController;
 use App\Http\Controllers\Frontend\CartController;
@@ -60,5 +61,16 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::post('store', [ProductController::class, 'store'])->name('store');
         Route::put('update', [ProductController::class, 'update'])->name('update');
         Route::delete('destroy', [ProductController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::name('admin.orders.')->prefix('orders')->group(function () {
+        Route::get('index', [OrderController::class, 'index'])->name('index');
+        Route::get('view-order/{id}', [OrderController::class, 'view'])->name('view');
+        Route::put('update', [OrderController::class, 'update'])->name('update');
+        Route::get('history', [OrderController::class, 'history'])->name('history');
+    });
+
+    Route::name('users.')->prefix('users')->group(function () {
+
     });
 });
