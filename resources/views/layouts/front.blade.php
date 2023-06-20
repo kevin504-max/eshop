@@ -47,6 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="{{ asset('frontend/js/custom.js') }}"></script>
+    <script src="{{ asset('frontend/js/checkout.js') }}"></script>
 
     @if (session("status") && session("message"))
         <script>

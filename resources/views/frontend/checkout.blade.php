@@ -23,27 +23,28 @@
                         <div class="row checkout-form">
                             <div class="col-md-6 mb-3">
                                 <label for="name">Full Name</label>
-                                <input type="text" class="form-control" name="username" value="{{ Auth::user()->name }}" required readonly>
+                                <input type="text" class="form-control username" name="username" value="{{ Auth::user()->name }}" readonly>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control" name="email" value="{{ Auth::user()->email }}" required readonly>
+                                <input type="text" class="form-control email" name="email" value="{{ Auth::user()->email }}" readonly>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="phone">Phone Number</label>
-                                <input type="text" class="form-control" name="phone" placeholder="Enter with your phone" required>
+                                <input type="text" class="form-control phone" name="phone" placeholder="Enter with your phone">
+                                <span id="phone_error" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="cpf_cnpj">Document (CPF/CNPJ)</label>
-                                <input id="cpf_cnpj" name="cpf_cnpj" type="text" name="cpf_cnpj" class="form-control mask-cpf" placeholder="000.000.000-00" required>
+                                <input id="cpf_cnpj" name="cpf_cnpj" type="text" name="cpf_cnpj" class="form-control cpf_cnpj mask-cpf" placeholder="000.000.000-00">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="state">State</label>
-                                <input type="text" class="form-control" name="state" placeholder="Enter with your state" required>
+                                <input type="text" class="form-control state" name="state" placeholder="Enter with your state">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="city">City</label>
-                                <input type="text" class="form-control" name="city" placeholder="Enter with your city" required>
+                                <input type="text" class="form-control city" name="city" placeholder="Enter with your city">
                             </div>
                         </div>
                     </div>
@@ -73,8 +74,9 @@
                             </tbody>
                         </table>
                         <div class="col-lg-12 hr-line"></div>
-                        <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-behance w-80">Place Order</button>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success w-80">Place Order | COD</button>
+                            <button type="button" class="btn btn-primary w-80 mt-3 razorpay_btn">Pay with Razorpay</button>
                         </div>
                     </div>
                 </div>
