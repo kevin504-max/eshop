@@ -15,7 +15,7 @@
     <form action="{{ url('place-order') }}" method="POST">
         {{ csrf_field() }}
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <h6>Basic Details</h6>
@@ -32,30 +32,36 @@
                             <div class="col-md-6 mb-3">
                                 <label for="phone">Phone Number</label>
                                 <input type="text" class="form-control phone" name="phone" placeholder="Enter with your phone">
-                                <span id="phone_error" class="text-danger"></span>
+                                <span id="phone_error" class="text-danger" style="font-size: 0.8em;"></span>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="cpf_cnpj">Document (CPF/CNPJ)</label>
                                 <input id="cpf_cnpj" name="cpf_cnpj" type="text" name="cpf_cnpj" class="form-control cpf_cnpj mask-cpf" placeholder="000.000.000-00">
+                                <span id="cpf_cnpj_error" class="text-danger" style="font-size: 0.8em;"></span>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="state">State</label>
                                 <input type="text" class="form-control state" name="state" placeholder="Enter with your state">
+                                <span id="state_error" class="text-danger" style="font-size: 0.8em;"></span>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="city">City</label>
                                 <input type="text" class="form-control city" name="city" placeholder="Enter with your city">
+                                <span id="city_error" class="text-danger" style="font-size: 0.8em;"></span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
+                        @php
+                            $total = 0;
+                        @endphp
                         <h6>Order Details</h6>
                         <div class="col-lg-12 hr-line"></div>
-                        <table class="table table-striped">
+                        <table class="table table-striped table-responsive">
                             <thead>
                                 <tr>
                                     <th >Product</th>
@@ -70,10 +76,15 @@
                                         <td class="text-center align-middle">{{ $item->items }}</td>
                                         <td class="text-center align-middle">{{ ($item->product->price - $item->product->discountPercentage) }}</td>
                                     </tr>
+                                    @php
+                                        $total += (($item->product->price - $item->product->discountPercentage) * $item->items);
+                                    @endphp
                                 @endforeach
                             </tbody>
                         </table>
+                        <h4 class="px-2">Grand Total: <span class="float-end">${{ $total }}</span></h4>
                         <div class="col-lg-12 hr-line"></div>
+                        <input type="hidden" name="payment_mode" id="payment_mode" value="COD">
                         <div class="text-center">
                             <button type="submit" class="btn btn-success w-80">Place Order | COD</button>
                             <button type="button" class="btn btn-primary w-80 mt-3 razorpay_btn">Pay with Razorpay</button>
@@ -89,6 +100,7 @@
 @section('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
     var options = {
         onKeyPress: function (cpf, ev, el, op) {
@@ -100,3 +112,6 @@
     $('#cpf_cnpj').length > 11 ? $('#cpf_cnpj').mask('00.000.000/0000-00', options) : $('#cpf_cnpj').mask('000.000.000-00#', options);
 </script>
 @endsection
+
+{{-- rzp_test_JdnkEvYGOrGMFd --}}
+{{-- BSV0eHAh9tk7yGn6o0TIvJ9b --}}

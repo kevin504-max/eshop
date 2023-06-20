@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('my-orders', [UserController::class, 'index']);
     Route::get('view-order/{id}', [UserController::class, 'view']);
     Route::get('wishlist', [WishlistController::class, 'index']);
+    Route::post('proceed-to-pay', [CheckoutController::class, 'razorpayCheck']);
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {

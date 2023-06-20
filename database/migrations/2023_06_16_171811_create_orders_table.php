@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->decimal('total_price', 15, 2);
+            $table->string('payment_mode');
+            $table->string('payment_id')->nullable();
             $table->string('message')->nullable();
             $table->string('tracking_number');
             $table->timestamps();

@@ -20,6 +20,8 @@ class Order extends Model
         'phone',
         'status',
         'total_price',
+        'payment_mode',
+        'payment_id',
         'message',
         'tracking_number'
     ];

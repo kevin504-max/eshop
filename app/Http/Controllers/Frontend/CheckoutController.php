@@ -57,6 +57,10 @@ class CheckoutController extends Controller
             }
 
             $order->total_price = $total;
+
+            $order->payment_mode = $request->payment_mode;
+            $order->payment_id = $request->payment_id;
+
             $order->tracking_number = 'samambaia'.rand(1111, 9999);
             $order->save();
 
@@ -86,10 +90,44 @@ class CheckoutController extends Controller
 
             Cart::destroy($cartItems);
 
+            if ($request->payment_mode == "Paid by Razorpay") {
+                return response()->json([
+                    "status" => "success",
+                    "message" => "Order placed successfully!"
+                ]);
+            }
+
             return redirect('/')->with(['status' => 'success', 'message' => 'Order placed successfully!']);
         } catch (\Throwable $th) {
             report ($th);
             return redirect()->back()->with(["status" => "error", "message" => "Something went wrong! Try again."]);
         }
+    }
+
+    public function razorpayCheck(Request $request)
+    {
+        $cartItems = Cart::where('user_id', Auth::id())->get();
+
+        $total_price = 0;
+        foreach ($cartItems as $item) {
+            $total_price += (($item->product->price - $item->product->discountPercentage) * $item->items);
+        }
+
+        $username = $request->input('username');
+        $email = $request->input('email');
+        $phone = $request->input('phone');
+        $cpf_cnpj = $request->input('cpf_cnpj');
+        $state = $request->input('state');
+        $city = $request->input('city');
+
+        return response()->json([
+            "username" => $username,
+            "email" => $email,
+            "phone" => $phone,
+            "cpf_cnpj" => $cpf_cnpj,
+            "state" => $state,
+            "city" => $city,
+            "total_price" => $total_price
+        ]);
     }
 }
