@@ -13,10 +13,14 @@
                     <a class="nav-link font-weight-bold" href="{{ url('category') }}">Category</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold" href="{{ url('cart') }}">Cart</a>
+                    <a class="nav-link font-weight-bold" href="{{ url('cart') }}">Cart
+                        <span class="badge badge-pill bg-primary cart-count">0</span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bold" href="{{ url('wishlist') }}">Wishlist</a>
+                    <a class="nav-link font-weight-bold" href="{{ url('wishlist') }}">Wishlist
+                        <span class="badge badge-pill bg-success wishlist-count">0</span>
+                    </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link font-weight-bold dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Om</a>

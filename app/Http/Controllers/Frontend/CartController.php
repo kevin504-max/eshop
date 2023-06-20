@@ -88,4 +88,15 @@ class CartController extends Controller
             return response()->json(['status' => 'error', 'message' => 'Something went wrong! Try again.']);
         }
     }
+
+    public function cartCount()
+    {
+        try {
+            $cartCount = Cart::where('user_id', Auth::id())->count();
+
+            return response()->json(['count' => $cartCount]);
+        } catch (\Throwable $th) {
+            report ($th);
+        }
+    }
 }

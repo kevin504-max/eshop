@@ -35,6 +35,8 @@ Route::get('category/{slug}/{product_title}', [FrontEndController::class, 'viewP
 
 Auth::routes();
 
+Route::get('load-cart-data', [CartController::class, 'cartCount']);
+Route::get('load-wishlist-data', [WishlistController::class, 'wishlistCount']);
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('add-to-cart', [CartController::class, 'addProduct']);
 Route::post('delete-cart-item', [CartController::class, 'removeProduct']);

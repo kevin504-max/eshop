@@ -1,4 +1,31 @@
 $(document).ready(function() {
+    loadCart();
+    loadWishlist();
+
+    function loadCart()
+    {
+        $.ajax({
+            method: "GET",
+            url: "/load-cart-data",
+            success: function (response) {
+                $(".cart-count").html('');
+                $(".cart-count").html(response.count);
+            }
+        })
+    }
+
+    function loadWishlist()
+    {
+        $.ajax({
+            method: "GET",
+            url: "/load-wishlist-data",
+            success: function (response) {
+                $(".wishlist-count").html('');
+                $(".wishlist-count").html(response.count);
+            }
+        })
+    }
+
     $(".addCartBtn").on("click", function(event) {
         event.preventDefault();
 
@@ -25,6 +52,7 @@ $(document).ready(function() {
                     showConfirmButton: false,
                     timer: 2500
                 });
+                loadCart();
             }
         });
     });
@@ -53,6 +81,7 @@ $(document).ready(function() {
                     showConfirmButton: false,
                     timer: 2500
                 });
+                loadWishlist();
             }
         });
     });

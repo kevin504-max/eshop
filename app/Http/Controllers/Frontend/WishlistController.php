@@ -64,4 +64,15 @@ class WishlistController extends Controller
             return response()->json(['status' => 'error', 'message' => 'Something went wrong! Try again.']);
         }
     }
+
+    public function wishlistCount()
+    {
+        try {
+            $wishCount = Wishlist::where('user_id', Auth::id())->count();
+
+            return response()->json(['count' => $wishCount]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }
