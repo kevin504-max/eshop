@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\FrontEndController;
@@ -70,7 +71,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('history', [OrderController::class, 'history'])->name('history');
     });
 
-    Route::name('users.')->prefix('users')->group(function () {
-
+    Route::name('dashboard.')->prefix('dashboard')->group(function () {
+        Route::get('users', [DashboardController::class, 'users'])->name('users');
+        Route::get('view-user/{id}', [DashboardController::class, 'viewUser'])->name('viewUser');
     });
 });
