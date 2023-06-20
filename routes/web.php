@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\FrontEndController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\FrontEnd\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,12 +40,17 @@ Route::post('add-to-cart', [CartController::class, 'addProduct']);
 Route::post('delete-cart-item', [CartController::class, 'removeProduct']);
 Route::post('update-cart', [CartController::class, 'updateCart']);
 
+Route::post('add-to-wishlist', [WishlistController::class, 'addProduct']);
+Route::post('delete-wishlist-item', [WishlistController::class, 'removeProduct']);
+
+
 Route::middleware(['auth'])->group(function () {
     Route::get('cart', [CartController::class, 'viewCart']);
     Route::get('checkout', [CheckoutController::class, 'index']);
     Route::post('place-order', [CheckoutController::class, 'placeOrder']);
     Route::get('my-orders', [UserController::class, 'index']);
     Route::get('view-order/{id}', [UserController::class, 'view']);
+    Route::get('wishlist', [WishlistController::class, 'index']);
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {

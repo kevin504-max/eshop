@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_items', function (Blueprint $table) {
+        Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('order_id')->unsigned();
-            $table->foreIgn('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('product_id')->unsigned();
-            $table->foreIgn('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('quantity');
-            $table->decimal('price', 15, 2);
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_items');
+        Schema::dropIfExists('wishlists');
     }
 };

@@ -35,7 +35,7 @@ class CartController extends Controller
                 return response()->json(['status' => 'success', 'message' => $product->title . ' Added to cart!']);
             }
 
-            return response()->json(['status' => 'error', 'message' => 'Login to Continue!']);
+            return response()->json(['status' => 'warning', 'message' => 'Login to Continue!']);
         } catch (\Throwable $th) {
             report ($th);
             return response()->json(['status' => 'error', 'message' => 'Something went wrong! Try again.']);
@@ -62,7 +62,7 @@ class CartController extends Controller
                 return response()->json(['status' => 'error', 'message' => 'Something went wrong! Try again.']);
             }
 
-            return response()->json(['status' => 'error', 'message' => 'Login to Continue!']);
+            return response()->json(['status' => 'warning', 'message' => 'Login to Continue!']);
         } catch (\Throwable $th) {
             report($th);
             return response()->json(['status' => 'error', 'message' => 'Something went wrong! Try again.']);
@@ -82,7 +82,7 @@ class CartController extends Controller
                 return response()->json(['status' => 'success', 'message' => 'Product removed from cart!']);
             }
 
-            return response()->json(['status' => 'error', 'message' => 'Login to Continue!']);
+            return response()->json(['status' => 'warning', 'message' => 'Login to Continue!']);
         } catch (\Throwable $th) {
             report ($th);
             return response()->json(['status' => 'error', 'message' => 'Something went wrong! Try again.']);

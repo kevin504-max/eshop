@@ -16,7 +16,35 @@ $(document).ready(function() {
             url: "/add-to-cart",
             data: {
                 "product_id": product_id,
-                "quantity": product_qty,
+                "quantity": product_qty ? product_qty : 1
+            },
+            success: function(response) {
+                Swal.fire({
+                    title: response.message,
+                    icon: response.status,
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+        });
+    });
+
+    $(".addToWishlistBtn").on("click", function(event) {
+        event.preventDefault();
+
+        var product_id = $(this).closest(".product_data").find(".product_id").val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            method: "POST",
+        url: "/add-to-wishlist",
+        data: {
+                "product_id": product_id,
             },
             success: function(response) {
                 Swal.fire({
@@ -71,6 +99,35 @@ $(document).ready(function() {
         $.ajax({
             method: "POST",
             url: "/delete-cart-item",
+            data: {
+                "product_id": product_id,
+            },
+            success: function(response) {
+                Swal.fire({
+                    title: response.message,
+                    icon: response.status,
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+                window.location.reload();
+            }
+        });
+    });
+
+    $(".delete-wishlist-item").on("click", function (event) {
+        event.preventDefault();
+
+        var product_id = $(this).closest(".product_data").find(".product_id").val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            method: "POST",
+            url: "/delete-wishlist-item",
             data: {
                 "product_id": product_id,
             },
