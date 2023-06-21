@@ -13,7 +13,7 @@ class WishlistController extends Controller
     public function index()
     {
         try {
-            $wishlist = Wishlist::where('user_id', Auth::id())->get();
+            $wishlist = Wishlist::where('user_id', Auth::id())->with('product')->get();
 
             return view('frontend.wishlist', compact('wishlist'));
         } catch (\Throwable $th) {

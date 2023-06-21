@@ -86,8 +86,8 @@
                         <div class="col-lg-12 hr-line"></div>
                         <input type="hidden" name="payment_mode" id="payment_mode" value="COD">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success w-100">Place Order | COD</button>
-                            <button type="button" class="btn btn-primary w-100 mt-3 razorpay_btn">Pay with Razorpay</button>
+                            <button type="submit" class="btn btn-success w-100" style="height: 55px;">Place Order | COD</button>
+                            <button type="button" class="btn btn-primary w-100 mt-3 razorpay_btn" style="height: 55px;">Pay with Razorpay</button>
                             <div id="paypal-button-container"></div>
                         </div>
                     </div>
@@ -161,9 +161,9 @@
                         title: response.message,
                         showConfirmButton: false,
                         timer: 1500
+                    }).then((result) => {
+                        window.location.href = "/my-orders";
                     });
-
-                    window.location.href = "/my-orders";
                 }
             });
           });

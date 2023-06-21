@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="container my-5">
-    <div class="card shadow">
+    <div class="card shadow wishlist-items">
         <div class="card-body">
             @if ($wishlist->count() > 0)
                 <div class="card-body">
@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         @php
-                            $total += (($item->product->price - $item->product->discountPercentage) * $item->items);
+                            $total += ($item->product->price - $item->product->discountPercentage);
                         @endphp
                     @endforeach
                 </div>

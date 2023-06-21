@@ -11,7 +11,7 @@ class OrderController extends Controller
     public function index()
     {
         try {
-            $orders = Order::where('status', 0)->get();
+            $orders = Order::where('status', 0)->orderBy('created_at', 'desc')->get();
 
             return view('admin.order.index', compact('orders'));
         } catch (\Throwable $th) {

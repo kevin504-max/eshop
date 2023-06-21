@@ -77,9 +77,9 @@ $(document).ready(function() {
                                         title: responseb.message,
                                         showConfirmButton: false,
                                         timer: 1500
+                                    }).then((result) => {
+                                        window.location.href = "/my-orders";
                                     });
-
-                                    window.location.href = "/my-orders";
                                 }
                             });
                         },

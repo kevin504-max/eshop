@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     loadCart();
     loadWishlist();
 
@@ -32,12 +38,6 @@ $(document).ready(function() {
         var product_id = $(this).closest(".product_data").find(".product_id").val();
         var product_qty = $(this).closest(".product_data").find(".qty-input").val();
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.ajax({
             method: "POST",
             url: "/add-to-cart",
@@ -62,12 +62,6 @@ $(document).ready(function() {
 
         var product_id = $(this).closest(".product_data").find(".product_id").val();
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.ajax({
             method: "POST",
         url: "/add-to-wishlist",
@@ -86,7 +80,7 @@ $(document).ready(function() {
         });
     });
 
-    $(".increment-btn").on("click", function(event) {
+    $(document).on('click', '.increment-btn', function (event) {
         event.preventDefault();
 
         var inc_value = $(this).closest(".product_data").find(".qty-input").val();
@@ -100,7 +94,7 @@ $(document).ready(function() {
         }
     });
 
-    $(".decrement-btn").on("click", function(event) {
+    $(document).on('click', '.decrement-btn', function (event) {
         event.preventDefault();
 
         var dec_value = $(this).closest(".product_data").find(".qty-input").val();
@@ -114,16 +108,10 @@ $(document).ready(function() {
         }
     });
 
-    $(".delete-cart-item").on("click", function (event) {
+    $(document).on('click', '.delete-cart-item', function (event) {
         event.preventDefault();
 
         var product_id = $(this).closest(".product_data").find(".product_id").val();
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
         $.ajax({
             method: "POST",
@@ -138,21 +126,16 @@ $(document).ready(function() {
                     showConfirmButton: false,
                     timer: 2500
                 });
-                window.location.reload();
+                loadCart();
+                $(".cart-items").load(location.href + " .cart-items");
             }
         });
     });
 
-    $(".delete-wishlist-item").on("click", function (event) {
+    $(document).on("click", ".delete-wishlist-item", function (event) {
         event.preventDefault();
 
         var product_id = $(this).closest(".product_data").find(".product_id").val();
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
         $.ajax({
             method: "POST",
@@ -167,12 +150,13 @@ $(document).ready(function() {
                     showConfirmButton: false,
                     timer: 2500
                 });
-                window.location.reload();
+                loadWishlist();
+                $(".wishlist-items").load(location.href + " .wishlist-items");
             }
         });
     });
 
-    $(".changeQuantity").on("click", function (event) {
+    $(document).on("click", ".changeQuantity", function (event) {
         event.preventDefault();
 
         var product_id = $(this).closest(".product_data").find(".product_id").val();
@@ -183,18 +167,12 @@ $(document).ready(function() {
             "quantity": quantity
         };
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         $.ajax({
             method: "POST",
             url: "/update-cart",
             data: data,
             success: function(response) {
-                window.location.reload();
+                $(".cart-items").load(location.href + " .cart-items");
             }
         });
     });

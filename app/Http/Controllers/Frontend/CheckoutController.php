@@ -97,7 +97,7 @@ class CheckoutController extends Controller
                 ]);
             }
 
-            return redirect('/')->with(['status' => 'success', 'message' => 'Order placed successfully!']);
+            return redirect('/my-orders')->with(['status' => 'success', 'message' => 'Order placed successfully!']);
         } catch (\Throwable $th) {
             report ($th);
             return redirect()->back()->with(["status" => "error", "message" => "Something went wrong! Try again."]);
