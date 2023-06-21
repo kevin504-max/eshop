@@ -35,11 +35,12 @@ Route::get('category/', [FrontEndController::class, 'category']);
 Route::get('category/{slug}', [FrontEndController::class, 'viewCategory']);
 Route::get('category/{slug}/{product_slug}', [FrontEndController::class, 'viewProduct']);
 
+Route::get('product-list', [FrontEndController::class, 'productListAjax']);
+Route::post('search-product', [FrontEndController::class, 'searchProduct']);
 Auth::routes();
 
 Route::get('load-cart-data', [CartController::class, 'cartCount']);
 Route::get('load-wishlist-data', [WishlistController::class, 'wishlistCount']);
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('add-to-cart', [CartController::class, 'addProduct']);
 Route::post('delete-cart-item', [CartController::class, 'removeProduct']);
 Route::post('update-cart', [CartController::class, 'updateCart']);

@@ -1,6 +1,15 @@
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
         <a class="navbar-brand font-weight-bold" href="{{ url('/') }}">E-Shop</a>
+        <div class="search-bar">
+            <form action="{{ url('/search-product') }}" method="POST">
+                @csrf
+                <div class="input-group">
+                    <input type="text" class="form-control" id="search_product" name="search_product" style="border-radius: 7px;" placeholder="Search..." aria-label="Search..." required>
+                    <button type="submit" class="input-group-text p-3" ><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

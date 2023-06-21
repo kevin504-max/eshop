@@ -106,4 +106,38 @@ class FrontEndController extends Controller
         }
 
     }
+
+    public function productListAjax()
+    {
+        $products = Product::select('title')->get();
+        $data = [];
+
+        foreach ($products as $product) {
+            $data[] = $product['title'];
+        }
+
+        return $data;
+    }
+
+    public function searchProduct(Request $request)
+    {
+        try {
+            $searched_product = $request->search_product;
+
+            if (!$searched_product) {
+                return redirect()->back()->with(['status' => 'info', 'message' => 'Please enter a product name to search.']);
+            }
+
+            $product = Product::where("title", "LIKE", "%$searched_product%")->with('hasCategory')->first();
+
+            if (!$product) {
+                return redirect()->back()->with(['status' => 'info', 'message' => 'No products matched your search.']);
+            }
+
+            return redirect('category/' . $product->hasCategory->slug . '/' . $product->slug);
+        } catch (\Throwable $th) {
+            report ($th);
+            return redirect()->back()->with(['status' => 'error', 'message' => 'Something went wrong! Try again.']);
+        }
+    }
 }

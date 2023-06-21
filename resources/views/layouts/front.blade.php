@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}">
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 </head>
 <body>
@@ -45,6 +47,27 @@
 
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <script>
+        var availableTags = [];
+        $.ajax({
+            type: "GET",
+            url: "/product-list",
+            success: function (response) {
+                startAutoComplete(response);
+            }
+        });
+
+        function startAutoComplete(availableTags)
+        {
+            $( "#search_product" ).autocomplete({
+                source: availableTags
+            });
+        }
+
+    </script>
 
     <script src="{{ asset('frontend/js/custom.js') }}"></script>
     <script src="{{ asset('frontend/js/checkout.js') }}"></script>
