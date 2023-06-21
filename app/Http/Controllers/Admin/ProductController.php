@@ -8,6 +8,7 @@ use App\Models\Product;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -57,6 +58,7 @@ class ProductController extends Controller
             $discount = str_replace(".", "", $discount);
 
             $product->title = $request->name;
+            $product->slug = Str::slug($request->name, "_");
             $product->category_id = $category->id;
             $product->description = $request->description;
             $product->price = $price;
@@ -113,6 +115,7 @@ class ProductController extends Controller
             }
 
             $product->title = $request->name;
+            $product->slug = Str::slug($request->name, "_");
             $product->category_id = $category->id;
             $product->description = $request->description;
             $product->price = $request->price;
@@ -181,7 +184,8 @@ class ProductController extends Controller
 
                 $data = [
                     "title" => $product["title"],
-                    "category_id" => 1,
+                    "slug" => Str::slug($product["title"], "_"),
+                    "category_id" => 2,
                     "description" => $product["description"],
                     "price" => $product["price"],
                     "discountPercentage" => $product["discountPercentage"],

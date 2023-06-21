@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\FrontEndController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\RatingController;
+use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\FrontEnd\WishlistController;
 
@@ -32,7 +33,7 @@ use App\Http\Controllers\FrontEnd\WishlistController;
 Route::get('/', [FrontEndController::class, 'index']);
 Route::get('category/', [FrontEndController::class, 'category']);
 Route::get('category/{slug}', [FrontEndController::class, 'viewCategory']);
-Route::get('category/{slug}/{product_title}', [FrontEndController::class, 'viewProduct']);
+Route::get('category/{slug}/{product_slug}', [FrontEndController::class, 'viewProduct']);
 
 Auth::routes();
 
@@ -54,6 +55,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('my-orders', [UserController::class, 'index']);
     Route::get('view-order/{id}', [UserController::class, 'view']);
     Route::post('add-rating', [RatingController::class, 'rate']);
+    Route::get('create-review/{product_slug}/userreview', [ReviewController::class, 'create']);
+    Route::post('store-review', [ReviewController::class, 'store']);
+    Route::get('edit-review/{product_slug}/userreview', [ReviewController::class, 'edit']);
+    Route::put('update-review', [ReviewController::class, 'update']);
     Route::get('wishlist', [WishlistController::class, 'index']);
     Route::post('proceed-to-pay', [CheckoutController::class, 'razorpayCheck']);
 });

@@ -23,7 +23,7 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link font-weight-bold dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Om</a>
+                    <a class="nav-link font-weight-bold dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Options</a>
                     <ul class="dropdown-menu">
                         <li class="nav-item">
                             <a class="nav-link font-weight-bold dropdown-item" href="{{ url('my-orders') }}">My Orders</a>

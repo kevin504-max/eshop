@@ -8,7 +8,7 @@
         <h6 class="mb-0">
             <a href="{{ url('category') }}"> Collections </a> /
             <a href="{{ url('category/' . $product->hasCategory->slug) }}"> {{ $category->name }} </a> /
-            <a href="{{ url('category/' . $product->hasCategory->slug . '/' . $product->title) }}"> {{ $product->title }} </a>
+            <a href="{{ url('category/' . $product->hasCategory->slug . '/' . $product->slug) }}"> {{ $product->title }} </a>
         </h6>
     </div>
 </div>
@@ -74,8 +74,37 @@
                     <p class="mt-3">{!! $product->description !!}</p>
                 </div>
                 <div class="col-lg-12 hr-line"></div>
-                <div class="col-md-12">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRateProduct"><i class="fa fa-star"></i> Rate this product</button>
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRateProduct"><i class="fa fa-star"></i> Rate this product</button>
+                        <a href="{{ url('create-review/' . $product->slug . '/userreview') }}" class="btn btn-primary"><i class="fa fa-comment"></i> Write a review</a>
+                    </div>
+                    <div class="col-md-8">
+                        @forelse ($reviews as $review)
+                            <div class="user-review">
+                                <label for="" class="font-bold" style="font-size: 1.2em;">{{ $review->user->name }}</label>
+                                @if ($review->user_id == Auth::id())
+                                    <a href="{{ url('edit-review/' . $product->slug . '/userreview' ) }}">edit</a>
+                                @endif
+                                <br>
+                                @if ($review->rating)
+                                    @php
+                                        $user_rated = $review->rating->rating;
+                                    @endphp
+                                    @for ($i = 1; $i <= $user_rated; $i++)
+                                        <i class="fa fa-star checked"></i>
+                                    @endfor
+                                    @for ($i = ($user_rated + 1); $i <= 5; $i++)
+                                        <i class="fa fa-star"></i>
+                                    @endfor
+                                @endif
+                                <small>Reviewed on {{ $review->created_at->format('d/m/Y') }}</small>
+                                <p>{{ $review->review }}</p>
+                            </div>
+                        @empty
+
+                        @endforelse
+                    </div>
                 </div>
             </div>
         </div>

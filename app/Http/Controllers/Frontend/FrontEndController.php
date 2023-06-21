@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Rating;
+use App\Models\Review;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,7 +52,7 @@ class FrontEndController extends Controller
         }
     }
 
-    public function viewProduct($category_slug, $product_title) {
+    public function viewProduct($category_slug, $product_slug) {
         try {
             $category = Category::where('slug', $category_slug)->first();
 
@@ -59,7 +60,7 @@ class FrontEndController extends Controller
                 return redirect('/')->with('error', 'No such category found...');
             }
 
-            $product = Product::where('title', $product_title)->first();
+            $product = Product::where('slug', $product_slug)->first();
 
             if (!$product) {
                 return redirect('/')->with('error', 'The link was broken.');
@@ -69,8 +70,9 @@ class FrontEndController extends Controller
             $ratings_sum = Rating::where('product_id', $product->id)->sum('rating');
             $ratings_value = ($ratings->count() > 0) ? $ratings_sum / $ratings->count() : 0;
             $user_rating = Rating::where('product_id', $product->id)->where('user_id', Auth::id())->first();
+            $reviews = Review::where('product_id', $product->id)->get();
 
-            return view('frontend.products.view', compact('category', 'product', 'ratings', 'ratings_value', 'user_rating'));
+            return view('frontend.products.view', compact('category', 'product', 'ratings', 'ratings_value', 'user_rating', 'reviews'));
         } catch (\Throwable $th) {
             report ($th);
             return redirect()->back()->with('error', 'Something went wrong! Try again.');

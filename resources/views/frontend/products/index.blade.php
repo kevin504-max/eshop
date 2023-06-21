@@ -7,7 +7,7 @@
     <div class="container">
         <h6 class="mb-0">
             <a href="{{ url('category') }}"> Collections </a> /
-            <a href="{{ url('category/' . $category->slug) }}"> {{ $category->name }} </a> /
+            <a href="{{ url('category/' . $category->slug) }}"> {{ $category->name }} </a>
         </h6>
     </div>
 </div>
@@ -17,7 +17,7 @@
             <h2>{{ $category->name }}</h2>
             @foreach($products as $product)
                 <div class="col-md-3 mb-3">
-                    <a href="{{ url('category/' . $category->slug . '/' . $product->title) }}">
+                    <a href="{{ url('category/' . $category->slug . '/' . $product->slug) }}">
                         <div class="card height-img">
                             <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="Product image" class="d-block w-100" style="height: 200px;">
                             <div class="card-body">
