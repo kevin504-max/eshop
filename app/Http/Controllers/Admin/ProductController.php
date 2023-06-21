@@ -179,7 +179,7 @@ class ProductController extends Controller
                     Category::create($data);
                 }
 
-                $datas = [
+                $data = [
                     "title" => $product["title"],
                     "category_id" => 1,
                     "description" => $product["description"],
@@ -202,7 +202,7 @@ class ProductController extends Controller
                 $ext = explode(".", $product["thumbnail"]);
                 $filename = time() . "." . $ext[count($ext) - 1];
                 file_put_contents("public/" . $this->directory . $filename, $file);
-                $datas["thumbnail"] = $filename;
+                $data["thumbnail"] = $filename;
 
                 // save images in local storage
                 $images = [];
@@ -213,9 +213,9 @@ class ProductController extends Controller
                     file_put_contents("public/" . $this->directory . $filename, $file);
                     $images[] = $filename;
                 }
-                $datas["images"] = json_encode($images);
+                $data["images"] = json_encode($images);
 
-                Product::create($datas);
+                Product::create($data);
             }
 
             echo "\nProducts registered successfully!\n";

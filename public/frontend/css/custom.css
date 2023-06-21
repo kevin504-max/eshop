@@ -100,10 +100,10 @@ html, body, #root {
 .select2-container--default .select2-selection--single,
 .select2-container--default .select2-selection--multiple,
 .select2-container--default .select2-selection--single .select2-selection__arrow {
-  height: 2.05rem;
+    height: 2.05rem;
 }
 .select2-container--default .select2-selection--single .select2-selection__rendered {
-  line-height: 32px;
+    line-height: 32px;
 }
 
 .height-img > img {
@@ -139,3 +139,38 @@ html, body, #root {
     font-size: 14px;
     padding: 10px !important;
 }
+
+/* rating starts */
+.rating-css div {
+    color: #ffbb33;
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 20px 0;
+}
+
+.rating-css input {
+    display: none;
+}
+
+.rating-css input + label {
+    font-size: 60px;
+    text-shadow: 1px 1px 0 #e91e63bb;
+    cursor: pointer;
+}
+
+.rating-css input:checked + label ~ label {
+    color: #ccc;
+}
+
+.rating-css label:active {
+    transform: scale(0.8);
+    transition: 0.3s ease;
+}
+
+.checked {
+    color: #FFBB33;
+}
+

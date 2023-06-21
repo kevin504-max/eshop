@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Rating;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FrontEndController extends Controller
 {
@@ -63,7 +65,12 @@ class FrontEndController extends Controller
                 return redirect('/')->with('error', 'The link was broken.');
             }
 
-            return view('frontend.products.view', compact('category', 'product'));
+            $ratings = Rating::where('product_id', $product->id)->get();
+            $ratings_sum = Rating::where('product_id', $product->id)->sum('rating');
+            $ratings_value = ($ratings->count() > 0) ? $ratings_sum / $ratings->count() : 0;
+            $user_rating = Rating::where('product_id', $product->id)->where('user_id', Auth::id())->first();
+
+            return view('frontend.products.view', compact('category', 'product', 'ratings', 'ratings_value', 'user_rating'));
         } catch (\Throwable $th) {
             report ($th);
             return redirect()->back()->with('error', 'Something went wrong! Try again.');
@@ -75,7 +82,7 @@ class FrontEndController extends Controller
         $categories = Product::pluck('category')->unique();
 
         foreach($categories as $category) {
-            $datas = [
+            $data = [
                 "name" => $category,
                 "slug" => Str::slug($category, '_'),
                 "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
@@ -87,7 +94,7 @@ class FrontEndController extends Controller
                 "meta_keywords" => "Category"
             ];
 
-            Category::create($datas);
+            Category::create($data);
         }
         $products = Product::all();
 

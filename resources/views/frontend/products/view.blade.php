@@ -24,6 +24,18 @@
                     <div class="hr-line col-lg-12"></div>
                     <label class="me-3">Original Price: <s>${{ $product->price }}</s></label>
                     <label class="fw-bold">Selling Price: ${{ ($product->price - $product->discountPercentage) }}</label>
+                    @php
+                        $rate_number = number_format($ratings_value);
+                    @endphp
+                    <div class="rating">
+                        @for ($i = 1; $i <= $rate_number; $i++)
+                            <i class="fa fa-star checked"></i>
+                        @endfor
+                        @for ($i = 5; $i > $rate_number; $i--)
+                            <i class="fa fa-star" style="color: #ccc;"></i>
+                        @endfor
+                        <span>@if ($ratings->count() > 0) {{ $ratings->count() }} Ratings @else No Ratings @endif</span>
+                    </div>
                     <p class="mt-3">{!! $product->description !!}</p>
                     <div class="hr-line col-lg-12"></div>
                     @if ($product->stock > 0)
@@ -61,8 +73,76 @@
                     <div class="hr-line col-lg-12"></div>
                     <p class="mt-3">{!! $product->description !!}</p>
                 </div>
+                <div class="col-lg-12 hr-line"></div>
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRateProduct"><i class="fa fa-star"></i> Rate this product</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('modals')
+{{-- MODAL RATE PRODUCT --}}
+<div id="modalRateProduct" class="modal inmodal fade" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-bs-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Rate {{ $product->title }}</h4>
+            </div>
+            <form action="{{ url('add-rating') }}" method="POST">
+                @csrf
+                <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
+                <div class="modal-body">
+                    <div class="rating-css">
+                        <div class="star-icon">
+                            @if ($user_rating)
+                                @for ($i = 1; $i <= $user_rating->rating; $i++)
+                                    <input type="radio" value="{{ $i }}" name="product_rating" id="rating_{{ $i }}">
+                                    <label for="rating_{{ $i }}" class="fa fa-star" style="color: #ffbb33;"></label>
+                                @endfor
+                                @for ($i = ($user_rating->rating + 1); $i <= 5 ; $i++)
+                                    <input type="radio" value="{{ $i }}" name="product_rating" id="rating_{{ $i }}">
+                                    <label for="rating_{{ $i }}" class="fa fa-star" style="color: #ccc;"></label>
+                                @endfor
+                            @else
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <input type="radio" value="{{ $i }}" name="product_rating" id="rating_{{ $i }}" @if($i == 1) checked @endif>
+                                    <label for="rating_{{ $i }}" class="fa fa-star" @if ($i == 1) style="color: #ffbb33;" @endif></label>
+                                @endfor
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Rate</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+    $(document).ready(function () {
+        $("#modalRateProduct").on("show.bs.modal", function () {
+            var modal = $(this);
+            modal.find(".star-icon").on("change", function (event) {
+                var rating = $(this).find("input:checked").val();
+
+                for (let i = 1; i <= rating; i++) {
+                    modal.find('label[for="rating_' + i + '"]').css("color", "#ffbb33");
+                }
+
+                for (let i = 5; i > rating; i--) {
+                    modal.find('label[for="rating_' + i + '"]').css("color", "#ccc");
+                }
+            });
+        });
+    });
+</script>
 @endsection
