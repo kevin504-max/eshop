@@ -44,7 +44,7 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         try {
-            $product = Product::with('hasCategory')->find($request->input('product_id'));
+            $product = Product::with('category')->find($request->input('product_id'));
 
             if (!$product) {
                 return redirect()->back()->with(['status' => 'info', 'message' => 'The link you followed was broken!']);
@@ -61,7 +61,7 @@ class ReviewController extends Controller
             $new_review = Review::create($data);
 
             if ($new_review) {
-                return redirect('category/' . $product->hasCategory->slug . '/' . $product->slug)->with(['status' => 'success', 'message' => 'Review added successfully!']);
+                return redirect('category/' . $product->category->slug . '/' . $product->slug)->with(['status' => 'success', 'message' => 'Review added successfully!']);
             }
         } catch (\Throwable $th) {
             report ($th);
@@ -103,6 +103,6 @@ class ReviewController extends Controller
         $review->review = $request->input('user_review');
         $review->update();
 
-        return redirect('category/' . $review->product->hasCategory->slug . '/' . $review->product->slug)->with(['status' => 'success', 'message' => 'Review updated successfully!']);
+        return redirect('category/' . $review->product->category->slug . '/' . $review->product->slug)->with(['status' => 'success', 'message' => 'Review updated successfully!']);
     }
 }

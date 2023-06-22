@@ -20,12 +20,10 @@ class Product extends Model
         "rating",
         "stock",
         "brand",
-        "category",
-        "thumbnail",
-        "images"
+        "thumbnail"
     ];
 
-    public function hasCategory() {
+    public function category() {
         return $this->belongsTo(Category::class, "category_id", "id");
     }
 }

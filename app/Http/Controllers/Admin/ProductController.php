@@ -185,16 +185,14 @@ class ProductController extends Controller
                 $data = [
                     "title" => $product["title"],
                     "slug" => Str::slug($product["title"], "_"),
-                    "category_id" => 2,
+                    "category_id" => 1,
                     "description" => $product["description"],
                     "price" => $product["price"],
                     "discountPercentage" => $product["discountPercentage"],
                     "rating" => $product["rating"],
                     "stock" => $product["stock"],
                     "brand" => $product["brand"],
-                    "category" => $product["category"],
                     "thumbnail" => $product["thumbnail"],
-                    "images" => json_encode($product["images"])
                 ];
 
                 if (!is_dir("public/" . $this->directory)) {

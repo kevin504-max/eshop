@@ -79,34 +79,6 @@ class FrontEndController extends Controller
         }
     }
 
-    // TEST FUNCTION
-    public function createCategories() {
-        $categories = Product::pluck('category')->unique();
-
-        foreach($categories as $category) {
-            $data = [
-                "name" => $category,
-                "slug" => Str::slug($category, '_'),
-                "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-                "status" => rand(0, 1),
-                "popular" => rand(0, 1),
-                "image" => "https://picsum.photos/id/" . rand(1, 100) . "/200/300",
-                "meta_title" => "Category ",
-                "meta_description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-                "meta_keywords" => "Category"
-            ];
-
-            Category::create($data);
-        }
-        $products = Product::all();
-
-        foreach($products as $product) {
-            $product->category_id = Category::where('name', $product->category)->first()->id;
-            $product->save();
-        }
-
-    }
-
     public function productListAjax()
     {
         $products = Product::select('title')->get();
@@ -128,13 +100,13 @@ class FrontEndController extends Controller
                 return redirect()->back()->with(['status' => 'info', 'message' => 'Please enter a product name to search.']);
             }
 
-            $product = Product::where("title", "LIKE", "%$searched_product%")->with('hasCategory')->first();
+            $product = Product::where("title", "LIKE", "%$searched_product%")->with('category')->first();
 
             if (!$product) {
                 return redirect()->back()->with(['status' => 'info', 'message' => 'No products matched your search.']);
             }
 
-            return redirect('category/' . $product->hasCategory->slug . '/' . $product->slug);
+            return redirect('category/' . $product->category->slug . '/' . $product->slug);
         } catch (\Throwable $th) {
             report ($th);
             return redirect()->back()->with(['status' => 'error', 'message' => 'Something went wrong! Try again.']);

@@ -7,8 +7,8 @@
     <div class="container">
         <h6 class="mb-0">
             <a href="{{ url('category') }}"> Collections </a> /
-            <a href="{{ url('category/' . $product->hasCategory->slug) }}"> {{ $category->name }} </a> /
-            <a href="{{ url('category/' . $product->hasCategory->slug . '/' . $product->slug) }}"> {{ $product->title }} </a>
+            <a href="{{ url('category/' . $product->category->slug) }}"> {{ $category->name }} </a> /
+            <a href="{{ url('category/' . $product->category->slug . '/' . $product->slug) }}"> {{ $product->title }} </a>
         </h6>
     </div>
 </div>

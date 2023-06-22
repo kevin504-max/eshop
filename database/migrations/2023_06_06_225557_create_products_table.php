@@ -23,9 +23,7 @@ return new class extends Migration
             $table->decimal('rating', 15, 2)->nullable();
             $table->integer('stock');
             $table->string('brand');
-            $table->string('category');
             $table->string('thumbnail');
-            $table->json('images');
             $table->timestamps();
             $table->softDeletes();
         });
