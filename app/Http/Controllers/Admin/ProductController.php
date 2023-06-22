@@ -29,7 +29,6 @@ class ProductController extends Controller
     public function store(Request $request) {
         try {
             $product = new Product();
-            $category = Category::findOrFail($request->category_id);
 
             if ($request->hasFile("thumbnail")) {
                 $file = $request->file("thumbnail");
@@ -59,14 +58,13 @@ class ProductController extends Controller
 
             $product->title = $request->name;
             $product->slug = Str::slug($request->name, "_");
-            $product->category_id = $category->id;
+            $product->category_id = $request->category_id;
             $product->description = $request->description;
             $product->price = $price;
             $product->discountPercentage = $discount;
             $product->rating = 0;
             $product->stock = $request->stock;
             $product->brand = $request->brand;
-            $product->category = $category->name;
             $product->save();
 
             return redirect("/dashboard")->with(["status" => "success", "message" => "Product registered successfully!"]);
@@ -79,7 +77,6 @@ class ProductController extends Controller
     public function update(Request $request) {
         try {
             $product = Product::findOrFail($request->id);
-            $category = Category::findOrFail($request->category_id);
 
             if ($request->hasFile("thumbnail")) {
                 $path = $this->directory . $product->thumbnail;
@@ -116,13 +113,12 @@ class ProductController extends Controller
 
             $product->title = $request->name;
             $product->slug = Str::slug($request->name, "_");
-            $product->category_id = $category->id;
+            $product->category_id = $request->category_id;
             $product->description = $request->description;
             $product->price = $request->price;
             $product->discountPercentage = $request->discount;
             $product->stock = $request->stock;
             $product->brand = $request->brand;
-            $product->category = $category->name;
             $product->update();
 
             return redirect("/dashboard")->with(["status" => "success", "message" => "Product updated successfully!"]);
@@ -207,15 +203,15 @@ class ProductController extends Controller
                 $data["thumbnail"] = $filename;
 
                 // save images in local storage
-                $images = [];
-                foreach ($product["images"] as $image) {
-                    $file = file_get_contents($image);
-                    $ext = explode(".", $image);
-                    $filename = time() . "." . $ext[count($ext) - 1];
-                    file_put_contents("public/" . $this->directory . $filename, $file);
-                    $images[] = $filename;
-                }
-                $data["images"] = json_encode($images);
+                // $images = [];
+                // foreach ($product["images"] as $image) {
+                //     $file = file_get_contents($image);
+                //     $ext = explode(".", $image);
+                //     $filename = time() . "." . $ext[count($ext) - 1];
+                //     file_put_contents("public/" . $this->directory . $filename, $file);
+                //     $images[] = $filename;
+                // }
+                // $data["images"] = json_encode($images);
 
                 Product::create($data);
             }

@@ -17,10 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('cpf', 14)->unique()->nullable();
-            $table->date('birth_date')->nullable();
             $table->string('state')->nullable();
             $table->string('city')->nullable();
-            $table->decimal('credit', 10, 2)->default(0.00)->nullable();
             $table->tinyInteger('status')->nullable();
             $table->string('password');
             $table->tinyInteger('role_as')->default('0');
