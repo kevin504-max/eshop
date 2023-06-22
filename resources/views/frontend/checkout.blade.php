@@ -87,7 +87,7 @@
                         <input type="hidden" name="payment_mode" id="payment_mode" value="COD">
                         <div class="text-center">
                             <button type="submit" class="btn btn-success w-100" style="height: 55px;">Place Order | COD</button>
-                            <button type="button" class="btn btn-primary w-100 mt-3 razorpay_btn" style="height: 55px;">Pay with Razorpay</button>
+                            <button type="button" class="btn btn-primary w-100 mt-1 mb-1 razorpay_btn" style="height: 55px;">Pay with Razorpay</button>
                             <div id="paypal-button-container"></div>
                         </div>
                     </div>

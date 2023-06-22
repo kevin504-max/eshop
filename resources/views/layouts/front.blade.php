@@ -35,6 +35,12 @@
         @yield('content')
     </main>
 
+    <div class="whatsapp-chat">
+        <a href="https://wa.me/+5533991264594?text=I'm%20interested%20in%20your%20car%20for%20sale" target="_blank">
+            <img src="{{ asset('/assets/wpp.png') }}" alt="whatsapp-logo" width="80px" height="80px">
+        </a>
+    </div>
+
     @yield('modals')
 
     <!-- Scripts -->
@@ -47,6 +53,20 @@
 
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/6493922a94cf5d49dc5f1f24/1h3g75u12';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
