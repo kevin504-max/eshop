@@ -38,9 +38,6 @@ class CategoryController extends Controller
             $category->description = $request->description;
             $category->status = ($request->status == TRUE) ? 1 : 0;
             $category->popular = ($request->popular == TRUE) ? 1 : 0;
-            $category->meta_title = $request->meta_title;
-            $category->meta_keywords = $request->meta_keywords;
-            $category->meta_description = $request->meta_description;
             $category->save();
 
             return redirect("/dashboard")->with(["status" => "success", "message" => "Category registered successfully!"]);
@@ -73,9 +70,6 @@ class CategoryController extends Controller
             $category->description = $request->description;
             $category->status = ($request->status == TRUE) ? 1 : 0;
             $category->popular = ($request->popular == TRUE) ? 1 : 0;
-            $category->meta_title = $request->meta_title;
-            $category->meta_keywords = $request->meta_keywords;
-            $category->meta_description = $request->meta_description;
             $category->update();
 
             return redirect("/dashboard")->with(["status" => "success", "message" => "Category updated successfully!"]);

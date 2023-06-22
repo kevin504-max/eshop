@@ -50,13 +50,6 @@
                                 <label class="custom-file-label" for="thumbnail_create"></label>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="images">Images</label>
-                            <div class="col-md-12 mt-2 mb-2 custom-file">
-                                <input type="file" name="images[]" id="images" class="custom-file-input" multiple>
-                                <label class="custom-file-label" for="images"></label>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -120,13 +113,6 @@
                             <div class="col-md-12 mt-2 mb-2 custom-file">
                                 <input type="file" name="thumbnail" id="thumbnail_update" class="custom-file-input">
                                 <label class="custom-file-label" for="thumbnail_update"></label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="images">Images</label>
-                            <div class="col-md-12 mt-2 mb-2 custom-file">
-                                <input type="file" name="images[]" id="images_update" class="custom-file-input" multiple>
-                                <label class="custom-file-label" for="images_update"></label>
                             </div>
                         </div>
                     </div>

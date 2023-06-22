@@ -16,10 +16,6 @@
             (category.popular) ?
             modal.find("#popular_update").attr("checked", "checked") :
             modal.find("#popular_update").removeAttr("checked");
-
-            modal.find("#meta_title_update").val(category.meta_title);
-            modal.find("#meta_keywords_update").val(category.meta_keywords);
-            modal.find("#meta_description_update").val(category.meta_description);
         });
 
         $("#modalDeleteCategory").on("show.bs.modal", function (event) {

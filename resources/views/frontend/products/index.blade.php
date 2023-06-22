@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
             <h2>{{ $category->name }}</h2>
-            @foreach($products as $product)
+            @forelse($products as $product)
                 <div class="col-md-3 mb-3">
                     <a href="{{ url('category/' . $category->slug . '/' . $product->slug) }}">
                         <div class="card height-img">
@@ -28,7 +28,13 @@
                         </div>
                     </a>
                 </div>
-            @endforeach
+            @empty
+                <div class="text-center" colspan="6">
+                    <img src="{{ asset('assets/logging-off.svg') }}" alt="No products in this category yet..."  class="w-40">
+                    <h4>No products in this category yet...</h4>
+                    <a href="{{ url('category') }}" type="button" class="btn btn-outline-primary"><i class="fa fa-shopping-cart fa-2x"></i> Continue Shopping</a>
+                </div>
+            @endforelse
         </div>
     </div>
 </div>

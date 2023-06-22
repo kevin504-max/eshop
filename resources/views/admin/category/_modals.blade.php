@@ -30,18 +30,6 @@
                             <label for="popular">Popular</label>
                             <input type="checkbox" name="popular" id="popular_create">
                         </div>
-                        <div class="col-md-12 mb-2">
-                            <label for="meta_title">Meta Title</label>
-                            <input type="text" name="meta_title" id="meta_title_create" class="form-control" placeholder="Type here...">
-                        </div>
-                        <div class="col-md-12 mb-2">
-                            <label for="meta_keywords">Meta Keywords</label>
-                            <textarea name="meta_keywords" id="meta_keywords_create" rows="3" class="form-control" placeholder="Type here..."></textarea>
-                        </div>
-                        <div class="col-md-12 mb-2">
-                            <label for="meta_description">Meta Description</label>
-                            <textarea name="meta_description" id="meta_description_create" rows="3" class="form-control" placeholder="Type here..."></textarea>
-                        </div>
                         <div class="col-md-12 mt-2 mb-2 custom-file">
                             <input type="file" name="image" class="custom-file-input" id="image_create">
                             <label class="custom-file-label" for="image_create"></label>
@@ -90,18 +78,6 @@
                         <div class="col-md-6 mb-3">
                             <label for="popular">Popular</label>
                             <input type="checkbox" name="popular" id="popular_update">
-                        </div>
-                        <div class="col-md-12 mb-2">
-                            <label for="meta_title">Meta Title</label>
-                            <input type="text" name="meta_title" id="meta_title_update" class="form-control" placeholder="Type here...">
-                        </div>
-                        <div class="col-md-12 mb-2">
-                            <label for="meta_keywords">Meta Keywords</label>
-                            <textarea name="meta_keywords" id="meta_keywords_update" rows="3" class="form-control" placeholder="Type here..."></textarea>
-                        </div>
-                        <div class="col-md-12 mb-2">
-                            <label for="meta_description">Meta Description</label>
-                            <textarea name="meta_description" id="meta_description_update" rows="3" class="form-control" placeholder="Type here..."></textarea>
                         </div>
                         <div class="col-md-12 mt-2 mb-2 custom-file">
                             <input type="file" name="image" id="image_update" class="custom-file-input">

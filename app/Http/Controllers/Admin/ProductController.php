@@ -38,19 +38,6 @@ class ProductController extends Controller
                 $product->thumbnail = $filename;
             }
 
-            if ($request->hasFile("images")) {
-                $images = [];
-
-                foreach ($request->file("images") as $file) {
-                    $ext = $file->getClientOriginalExtension();
-                    $filename = time() . "." . $ext;
-                    $file->move($this->directory, $filename);
-                    $images[] = $filename;
-                }
-
-                $product->images = json_encode($images);
-            }
-
             $price = str_replace(",", ".", $request->price);
             $price = str_replace(".", "", $price);
             $discount = str_replace(",", ".", $request->discount);
@@ -90,25 +77,6 @@ class ProductController extends Controller
                 $filename = time() . "." . $ext;
                 $file->move($this->directory, $filename);
                 $product->thumbnail = $filename;
-            }
-
-            if ($request->hasFile("images")) {
-                $path = $this->directory . $product->images;
-
-                if (File::exists($path)) {
-                    File::delete($path);
-                }
-
-                $images = [];
-
-                foreach ($request->file("images") as $file) {
-                    $ext = $file->getClientOriginalExtension();
-                    $filename = time() . "." . $ext;
-                    $file->move($this->directory, $filename);
-                    $images[] = $filename;
-                }
-
-                $product->images = json_encode($images);
             }
 
             $product->title = $request->name;

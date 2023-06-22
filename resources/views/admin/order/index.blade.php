@@ -37,9 +37,8 @@
                                     </tr>
                                 @empty
                                     <div class="text-center" colspan="6">
-                                        <img src="{{ asset('assets/logging-off.svg') }}" alt="You don't have any order registered yet..."  class="w-40">
-                                        <h4>You don't have any order registered yet...</h4>
-                                        <a href="{{ url('category') }}" type="button" class="btn btn-outline-primary"><i class="fa fa-shopping-cart fa-2x"></i> Continue Shopping</a>
+                                        <img src="{{ asset('assets/logging-off.svg') }}" alt="Nothing to see here..."  class="w-40">
+                                        <h4>Nothing to see here...</h4>
                                     </div>
                                 @endforelse
                             </tbody>

@@ -25,8 +25,8 @@
                             <td class="text-center align-middle">{{ $category->id }}</td>
                             <td class="text-center align-middle">{{ $category->name }}</td>
                             <td class="text-center align-middle">{{ $category->description }}</td>
-                            <td class="text-center align-middle">
-                                <img src="{{ asset('assets/uploads/category/' . $category->image) }}" alt="image" class="img-circle w-25">
+                            <td class="text-center align-middle height-img">
+                                <img src="{{ asset('assets/uploads/category/' . $category->image) }}" alt="image" class="img-circle" style="height: 80px;">
                             </td>
                             <td class="text-center align-middle">
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdateCategory" data-category="{{ $category }}"><i class="fa fa-pen"></i></button>
