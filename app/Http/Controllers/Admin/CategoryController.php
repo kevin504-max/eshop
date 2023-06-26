@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
-    protected $directory = "assets/uploads/category/";
+    protected $directory = public_path() . "assets/uploads/category/";
 
     public function index () {
         try {
