@@ -27,7 +27,7 @@ class CategoryController extends Controller
 
             if ($request->hasFile("image")) {
                 if (!is_dir("public/" . $this->directory)) {
-                    mkdir("public/" . $this->directory, 0777, true);
+                    mkdir("public/" . $this->directory, 777, true);
                 }
 
                 $file = $request->file("image");
