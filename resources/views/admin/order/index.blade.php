@@ -37,7 +37,7 @@
                                     </tr>
                                 @empty
                                     <div class="text-center" colspan="6">
-                                        <img src="{{ asset('assets/logging-off.svg') }}" alt="Nothing to see here..."  class="w-40">
+                                        <img src="{{ asset('assets/logging-off.svg', true) }}" alt="Nothing to see here..."  class="w-40">
                                         <h4>Nothing to see here...</h4>
                                     </div>
                                 @endforelse

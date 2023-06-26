@@ -21,7 +21,7 @@
                 @foreach ($cartItems as $item)
                     <div class="row mb-3 product_data">
                         <div class="col-md-2 height-img">
-                            <img src="{{ asset('assets/uploads/product/' . $item->product->thumbnail) }}" alt="Product image" class="w-100 border-radius-xl p-2" style="height: 120px;">
+                            <img src="{{ asset('assets/uploads/product/' . $item->product->thumbnail, true) }}" alt="Product image" class="w-100 border-radius-xl p-2" style="height: 120px;">
                         </div>
                         <div class="col-md-5 mt-5">
                             <h4>{{ $item->product->title }}</h4>
@@ -61,7 +61,7 @@
             </div>
         @else
             <div class="card-body text-center">
-                <img src="{{ asset('assets/logging-off.svg') }}" alt="Nothing to see here..."  class="w-40">
+                <img src="{{ asset('assets/logging-off.svg', true) }}" alt="Nothing to see here..."  class="w-40">
                 <h4>Your cart is empty</h4>
                 <a href="{{ url('category') }}" type="button" class="btn btn-outline-primary"><i class="fa fa-shopping-cart fa-2x"></i> Continue Shopping</a>
             </div>

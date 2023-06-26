@@ -19,7 +19,7 @@
                 <div class="col-md-3 mb-3">
                     <a href="{{ url('category/' . $category->slug . '/' . $product->slug) }}">
                         <div class="card height-img">
-                            <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="Product image" class="d-block w-100" style="height: 200px;">
+                            <img src="{{ asset('assets/uploads/product/' . $product->thumbnail, true) }}" alt="Product image" class="d-block w-100" style="height: 200px;">
                             <div class="card-body">
                                 <h5>{{ $product->title }}</h5>
                                 <small class="float-start">{{ "$" . ($product->price - $product->discountPercentage) }}</small>
@@ -30,7 +30,7 @@
                 </div>
             @empty
                 <div class="text-center" colspan="6">
-                    <img src="{{ asset('assets/logging-off.svg') }}" alt="No products in this category yet..."  class="w-40">
+                    <img src="{{ asset('assets/logging-off.svg', true) }}" alt="No products in this category yet..."  class="w-40">
                     <h4>No products in this category yet...</h4>
                     <a href="{{ url('category') }}" type="button" class="btn btn-outline-primary"><i class="fa fa-shopping-cart fa-2x"></i> Continue Shopping</a>
                 </div>

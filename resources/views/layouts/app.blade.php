@@ -14,8 +14,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     {{-- Styles --}}
-    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap5.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap5.css', true) }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css', true) }}">
 </head>
 <body>
     <div id="app">
@@ -76,6 +76,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/bootstrap.bundle.min.js', true) }}"></script>
 </body>
 </html>

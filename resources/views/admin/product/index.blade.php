@@ -34,7 +34,7 @@
                             <td class="text-center align-middle">{{ $product->rating }}</td>
                             <td class="text-center align-middle">{{ $product->stock }}</td>
                             <td class="text-center align-middle height-img">
-                                <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="image" class="img-circle" style="height: 80px;">
+                                <img src="{{ asset('assets/uploads/product/' . $product->thumbnail, true) }}" alt="image" class="img-circle" style="height: 80px;">
                             </td>
                             <td class="text-center align-middle">
                                 <button class="btn btn-primary" type="button" data-bs-target="#modalUpdateProducts" data-bs-toggle="modal" data-product="{{ $product }}"><i class="fa fa-pen"></i></button>
@@ -44,7 +44,7 @@
                     @empty
                         <tr>
                             <div class="text-center" colspan="5">
-                                <img src="{{ asset('assets/logging-off.svg') }}" alt="Nothing to see here..." width="200px">
+                                <img src="{{ asset('assets/logging-off.svg', true) }}" alt="Nothing to see here..." width="200px">
                                 <h2 class="text-center">Nothing to see here...</h2>
                             </div>
                         </tr>
