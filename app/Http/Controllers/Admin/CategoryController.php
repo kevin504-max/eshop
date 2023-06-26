@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
-    protected $directory = "assets\uploads\category\\";
+    protected $directory = "assets/uploads/category/";
 
     public function index () {
         try {
@@ -22,14 +22,14 @@ class CategoryController extends Controller
     }
 
     public function store (Request $request) {
-        // try {
+        try {
             $category = new Category();
 
             if ($request->hasFile("image")) {
                 $file = $request->file("image");
                 $ext = $file->getClientOriginalExtension();
                 $filename = time() . "." . $ext;
-                $file->move("public\\" . $this->directory, $filename);
+                $file->move($this->directory, $filename);
                 $category->image = $filename;
             }
 
@@ -41,18 +41,18 @@ class CategoryController extends Controller
             $category->save();
 
             return redirect("/dashboard")->with(["status" => "success", "message" => "Category registered successfully!"]);
-        // } catch (\Throwable $th) {
-        //     report ($th);
-        //     return redirect()->back()->with(["status" => "error", "message" => "Something went wrong! Try again."]);
-        // }
+        } catch (\Throwable $th) {
+            report ($th);
+            return redirect()->back()->with(["status" => "error", "message" => "Something went wrong! Try again."]);
+        }
     }
 
     public function update(Request $request) {
-        // try {
+        try {
             $category = Category::findOrFail($request->id);
 
             if ($request->hasFile("image")) {
-                $path = "public\\" . $this->directory . $category->image;
+                $path = $this->directory . $category->image;
 
                 if (File::exists($path)) {
                     File::delete($path);
@@ -61,7 +61,7 @@ class CategoryController extends Controller
                 $file = $request->file("image");
                 $ext = $file->getClientOriginalExtension();
                 $filename = time() . "." . $ext;
-                $file->move("public\\" . $this->directory, $filename);
+                $file->move($this->directory, $filename);
                 $category->image = $filename;
             }
 
@@ -73,10 +73,10 @@ class CategoryController extends Controller
             $category->update();
 
             return redirect("/dashboard")->with(["status" => "success", "message" => "Category updated successfully!"]);
-        // } catch (\Throwable $th) {
-        //     report ($th);
-        //     return redirect()->back()->with(["status" => "error", "message" => "Something went wrong! Try again."]);
-        // }
+        } catch (\Throwable $th) {
+            report ($th);
+            return redirect()->back()->with(["status" => "error", "message" => "Something went wrong! Try again."]);
+        }
     }
 
     public function destroy(Request $request) {
@@ -84,7 +84,7 @@ class CategoryController extends Controller
             $category = Category::findOrFail($request->id);
 
             if ($category->image) {
-                $path = "public\\" . $this->directory . $category->image;
+                $path = $this->directory . $category->image;
 
                 if (File::exists($path)) {
                     File::delete($path);

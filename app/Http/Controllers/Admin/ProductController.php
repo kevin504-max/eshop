@@ -137,10 +137,7 @@ class ProductController extends Controller
                         "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
                         "status" => 0,
                         "popular" => 0,
-                        "image" => "https://picsum.photos/id/" . rand(1, 100) . "/200/300",
-                        "meta_title" => "Category ",
-                        "meta_description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-                        "meta_keywords" => "Category"
+                        "image" => "https://picsum.photos/id/" . rand(1, 100) . "/200/300"
                     ];
 
                     Category::create($data);
