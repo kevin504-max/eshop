@@ -45,10 +45,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint NOT NULL DEFAULT '0',
   `popular` tinyint NOT NULL DEFAULT '0',
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `meta_title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `meta_description` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `meta_keywords` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
