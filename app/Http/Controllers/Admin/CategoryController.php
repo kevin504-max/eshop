@@ -29,7 +29,7 @@ class CategoryController extends Controller
                 $file = $request->file("image");
                 $ext = $file->getClientOriginalExtension();
                 $filename = time() . "." . $ext;
-                $file->move("public/" . $this->directory, $filename, 0777, true);
+                $file->move($this->directory, $filename, 0777, true);
                 $category->image = $filename;
             }
 
