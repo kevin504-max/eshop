@@ -6,7 +6,7 @@
                 <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Register Category</h4>
             </div>
-            <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('categories.store', true) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
@@ -53,7 +53,7 @@
                 <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Update Category</h4>
             </div>
-            <form action="{{ route('categories.update') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('categories.update', true) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method("PUT")
                 <input type="hidden" name="id" id="id">
@@ -106,7 +106,7 @@
                 <h5 class="text-center">Are you sure you want to <strong>delete</strong> this category?</h5>
                 <span class="text-muted">This operation cannot be undone.</span>
             </div>
-            <form action="{{ route('categories.destroy') }}" method="POST">
+            <form action="{{ route('categories.destroy', true) }}" method="POST">
                 @csrf
                 @method("DELETE")
                 <input type="hidden" name="id" id="id">
