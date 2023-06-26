@@ -3,8 +3,7 @@ This is a documentantion for the "Eshop" application. The project is an e-commer
 with functionalities for administrators and users. Administrators have access to a dashboard where they can manage products,
 categories, view user details and purchase history. Ordinary users can preview products, add items to the shopping cart
 by specifying the quantity, and add products to the wishlist.
-The system supports payments via PayPal, Razorpay and cash on delivery (COD). The project is available at --- 
-and includes a command to populate the database with products using the `php artisan import-products` command.
+The system supports payments via PayPal, Razorpay and cash on delivery (COD). The project is available at `https://eshop-production-4f4b.up.railway.app/` and includes a command to populate the database with products using the `php artisan import-products` command.
 
 ### Technologies Used
 * Backend:
@@ -27,29 +26,29 @@ To run the project locally, follow the steps below:
 
 1. Clone the project repository:
 ```bash
-    git clone https://github.com/kevin504-max/eshop.git
+git clone https://github.com/kevin504-max/eshop.git
 ```
 2. Install the Composer dependencies:
 ```bash
-    composer install
+composer install
 ```
 3. Create the .env environment file based on the .env.example file and configure the database.
 4. Generate the application encryption key:
 ```bash
-    php artisan key:generate 
+php artisan key:generate 
 ```
 6. Run database migrations:
 ```bash
-    php artisan migrate
+php artisan migrate
 ```
 7. (Optional) Populate the database with products - Ensure that you have at least one category registered to be linked:
 ```bash
-    php artisan import-products
+php artisan import-products
 ```
 8. Start the development server:
 ```bash
-    php artisan serve
-    npm run serve
+php artisan serve
+npm run dev
 ```
 
 ### Application Usage
