@@ -3,4 +3,4 @@ services:
   web:
     build:
       env:
-        DIRECTORY_PERMISSIONS: "0777"
+        DIRECTORY_PERMISSIONS: "0755"
