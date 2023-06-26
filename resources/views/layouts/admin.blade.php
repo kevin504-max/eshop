@@ -35,7 +35,6 @@
     @yield('modals')
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery-3.6.4.min.js') }}"></script>
     <script src="{{ asset('frontend/js/select2.min.js') }}"></script>

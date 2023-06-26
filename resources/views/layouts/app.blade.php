@@ -76,7 +76,6 @@
     </div>
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

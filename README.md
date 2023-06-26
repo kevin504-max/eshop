@@ -1,66 +1,69 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### Overview
+This is a documentantion for the "Eshop" application. The project is an e-commerce system, developed entirely in Laravel,
+with functionalities for administrators and users. Administrators have access to a dashboard where they can manage products,
+categories, view user details and purchase history. Ordinary users can preview products, add items to the shopping cart
+by specifying the quantity, and add products to the wishlist.
+The system supports payments via PayPal, Razorpay and cash on delivery (COD). The project is available at --- 
+and includes a command to populate the database with products using the `php artisan import-products` command.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Technologies Used
+* Backend:
+    * Laravel: A PHP framework used for backend development.
+    * MySQL: Relational database used to store application data.
 
-## About Laravel
+* Frontend:
+    * HTML: Markup language for structuring the user interface.
+    * CSS: Styling language used to style the user interface.
+    * JavaScript: Programming language used to add interactivity to the user interface.
+    * Bootstrap: A CSS framework used to create responsive layouts and component styling.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+* Payments:
+    * PayPal: An online payment service used to process electronic payments.
+    * Razorpay: An online payment platform offering simplified payment services.
+    * Cash on Delivery (COD): Payment on delivery option, where payment is made upon delivery of the product.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Installation and Configuration
+To run the project locally, follow the steps below:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. Clone the project repository:
+```bash
+    git clone https://github.com/kevin504-max/eshop.git
+```
+2. Install the Composer dependencies:
+```bash
+    composer install
+```
+3. Create the .env environment file based on the .env.example file and configure the database.
+4. Generate the application encryption key:
+```bash
+    php artisan key:generate 
+```
+6. Run database migrations:
+```bash
+    php artisan migrate
+```
+7. (Optional) Populate the database with products - Ensure that you have at least one category registered to be linked:
+```bash
+    php artisan import-products
+```
+8. Start the development server:
+```bash
+    php artisan serve
+    npm run serve
+```
 
-## Learning Laravel
+### Application Usage
+Access the application in your browser and use the following features:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* Administration
+    * Log in to the admin panel with your admin credentials.
+    * From the admin panel, you can:
+        * Perform CRUD (Create, Read, Update, Delete) operations on products and categories.
+        * View user details.
+        * View purchase history and details.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    * Common Users
+        * Browse the products available in the store.
+        * Add items to the shopping cart, specifying the desired quantity.
+        * Add products to wishlist to save them for future purchases.
+        * Select a payment method: PayPal, Razorpay or COD (cash on delivery).
