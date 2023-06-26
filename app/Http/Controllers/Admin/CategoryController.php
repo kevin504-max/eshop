@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
-    protected $directory = public_path() . "assets/uploads/category/";
+    protected $directory = "assets/uploads/category/";
 
     public function index () {
         try {
@@ -29,7 +29,7 @@ class CategoryController extends Controller
                 $file = $request->file("image");
                 $ext = $file->getClientOriginalExtension();
                 $filename = time() . "." . $ext;
-                $file->move($this->directory, $filename, 0777, true);
+                $file->move("public/" . $this->directory, $filename, 0777, true);
                 $category->image = $filename;
             }
 
