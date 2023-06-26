@@ -41,7 +41,7 @@ php artisan key:generate
 ```bash
 php artisan migrate
 ```
-7. (Optional) Populate the database with products - Ensure that you have at least one category registered to be linked:
+7. (Optional) Populate the database with products:
 ```bash
 php artisan import-products
 ```
