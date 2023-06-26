@@ -22,7 +22,7 @@ class CategoryController extends Controller
     }
 
     public function store (Request $request) {
-        try {
+        // try {
             $category = new Category();
 
             if ($request->hasFile("image")) {
@@ -41,10 +41,10 @@ class CategoryController extends Controller
             $category->save();
 
             return redirect("/dashboard")->with(["status" => "success", "message" => "Category registered successfully!"]);
-        } catch (\Throwable $th) {
-            report ($th);
-            return redirect()->back()->with(["status" => "error", "message" => "Something went wrong! Try again."]);
-        }
+        // } catch (\Throwable $th) {
+        //     report ($th);
+        //     return redirect()->back()->with(["status" => "error", "message" => "Something went wrong! Try again."]);
+        // }
     }
 
     public function update(Request $request) {

@@ -31,10 +31,6 @@ class ProductController extends Controller
             $product = new Product();
 
             if ($request->hasFile("thumbnail")) {
-                if (!is_dir("public/" . $this->directory)) {
-                    mkdir("public/" . $this->directory, 0777, true);
-                }
-
                 $file = $request->file("thumbnail");
                 $ext = $file->getClientOriginalExtension();
                 $filename = time() . "." . $ext;
