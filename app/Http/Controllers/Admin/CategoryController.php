@@ -26,6 +26,10 @@ class CategoryController extends Controller
             $category = new Category();
 
             if ($request->hasFile("image")) {
+                if (!is_dir("public/" . $this->directory)) {
+                    mkdir("public/" . $this->directory, 0777, true);
+                }
+
                 $file = $request->file("image");
                 $ext = $file->getClientOriginalExtension();
                 $filename = time() . "." . $ext;
