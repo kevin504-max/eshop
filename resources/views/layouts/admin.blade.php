@@ -28,7 +28,7 @@
         <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
             @include('layouts.inc.adminnav')
             @yield('content')
-            @include('layouts.inc.adminfooter')
+            {{-- @include('layouts.inc.adminfooter') --}}
         </main>
     </div>
 

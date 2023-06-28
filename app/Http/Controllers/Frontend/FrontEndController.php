@@ -27,7 +27,7 @@ class FrontEndController extends Controller
 
     public function category() {
         try {
-            $categories = Category::where('status', 0)->get();
+            $categories = Category::where('status', 1)->get();
             return view('frontend.category', compact('categories'));
         } catch (\Throwable $th) {
             report ($th);

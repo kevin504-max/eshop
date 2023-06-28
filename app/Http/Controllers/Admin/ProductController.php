@@ -39,9 +39,9 @@ class ProductController extends Controller
             }
 
             $price = str_replace(",", ".", $request->price);
-            $price = str_replace(".", "", $price);
+            $price = str_replace(".", "", $price) / 100;
             $discount = str_replace(",", ".", $request->discount);
-            $discount = str_replace(".", "", $discount);
+            $discount = str_replace(".", "", $discount) / 100;
 
             $product->title = $request->name;
             $product->slug = Str::slug($request->name, "_");
@@ -54,7 +54,7 @@ class ProductController extends Controller
             $product->brand = $request->brand;
             $product->save();
 
-            return redirect("/dashboard")->with(["status" => "success", "message" => "Product registered successfully!"]);
+            return redirect()->back()->with(["status" => "success", "message" => "Product registered successfully!"]);
         } catch (\Throwable $th) {
             report ($th);
             return redirect()->back()->with(["status" => "error", "message" => "Something went wrong! Try again."]);
@@ -79,17 +79,22 @@ class ProductController extends Controller
                 $product->thumbnail = $filename;
             }
 
+            $price = str_replace(",", ".", $request->price);
+            $price = str_replace(".", "", $price) / 100;
+            $discount = str_replace(",", ".", $request->discount);
+            $discount = str_replace(".", "", $discount) / 100;
+
             $product->title = $request->name;
             $product->slug = Str::slug($request->name, "_");
             $product->category_id = $request->category_id;
             $product->description = $request->description;
-            $product->price = $request->price;
-            $product->discountPercentage = $request->discount;
+            $product->price = $price;
+            $product->discountPercentage = $discount;
             $product->stock = $request->stock;
             $product->brand = $request->brand;
             $product->update();
 
-            return redirect("/dashboard")->with(["status" => "success", "message" => "Product updated successfully!"]);
+            return redirect()->back()->with(["status" => "success", "message" => "Product updated successfully!"]);
         } catch (\Throwable $th) {
             report ($th);
             return redirect()->back()->with(["status" => "error", "message" => "Something went wrong! Try again."]);
@@ -101,7 +106,7 @@ class ProductController extends Controller
             $product = Product::findOrFail($request->id);
             $product->delete();
 
-            return redirect("/dashboard")->with(["status" => "success", "message" => "Product removed successfully!"]);
+            return redirect()->back()->with(["status" => "success", "message" => "Product removed successfully!"]);
         } catch (\Throwable $th) {
             report ($th);
             return redirect()->back()->with(["status" => "error", "message" => "Something went wrong! Try again."]);

@@ -40,7 +40,7 @@ class CategoryController extends Controller
             $category->popular = ($request->popular == TRUE) ? 1 : 0;
             $category->save();
 
-            return redirect("/dashboard")->with(["status" => "success", "message" => "Category registered successfully!"]);
+            return redirect()->back()->with(["status" => "success", "message" => "Category registered successfully!"]);
         } catch (\Throwable $th) {
             report ($th);
             return redirect()->back()->with(["status" => "error", "message" => "Something went wrong! Try again."]);
@@ -72,7 +72,7 @@ class CategoryController extends Controller
             $category->popular = ($request->popular == TRUE) ? 1 : 0;
             $category->update();
 
-            return redirect("/dashboard")->with(["status" => "success", "message" => "Category updated successfully!"]);
+            return redirect()->back()->with(["status" => "success", "message" => "Category updated successfully!"]);
         } catch (\Throwable $th) {
             report ($th);
             return redirect()->back()->with(["status" => "error", "message" => "Something went wrong! Try again."]);
@@ -93,7 +93,7 @@ class CategoryController extends Controller
 
             $category->delete();
 
-            return redirect("/dashboard")->with(["status" => "success", "message" => "Category removed successfully!"]);
+            return redirect()->back()->with(["status" => "success", "message" => "Category removed successfully!"]);
         } catch (\Throwable $th) {
             report ($th);
             return redirect()->back()->with(["status" => "error", "message" => "Something went wrong! Try again."]);

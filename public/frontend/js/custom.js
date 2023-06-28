@@ -64,19 +64,19 @@ $(document).ready(function() {
 
         $.ajax({
             method: "POST",
-        url: "/add-to-wishlist",
-        data: {
-                "product_id": product_id,
-            },
-            success: function(response) {
-                Swal.fire({
-                    title: response.message,
-                    icon: response.status,
-                    showConfirmButton: false,
-                    timer: 2500
-                });
-                loadWishlist();
-            }
+            url: "/add-to-wishlist",
+            data: {
+                    "product_id": product_id,
+                },
+                success: function(response) {
+                    Swal.fire({
+                        title: response.message,
+                        icon: response.status,
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                    loadWishlist();
+                }
         });
     });
 
