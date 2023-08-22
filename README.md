@@ -3,7 +3,7 @@ This is a documentantion for the "Eshop" application. The project is an e-commer
 with functionalities for administrators and users. Administrators have access to a dashboard where they can manage products,
 categories, view user details and purchase history. Ordinary users can preview products, add items to the shopping cart
 by specifying the quantity, and add products to the wishlist.
-The system supports payments via PayPal, Razorpay and cash on delivery (COD). The project is available at `https://eshop-production-4f4b.up.railway.app/` and includes a command to populate the database with products using the `php artisan import-products` command.
+The system supports payments via PayPal, Razorpay and cash on delivery (COD). The project is available at `https://eshop.leklob.com/` and includes a command to populate the database with products using the `php artisan import-products` command.
 
 ### Technologies Used
 * Backend:
