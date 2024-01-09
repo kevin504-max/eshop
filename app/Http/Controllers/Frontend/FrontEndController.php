@@ -102,6 +102,12 @@ class FrontEndController extends Controller
             // Consulta para obter as análises do produto
             $reviews = DB::select('SELECT * FROM reviews WHERE product_id = ?', [$product->id]);
 
+            // Atribui os usuários que fizeram as análises do produto e a avaliação do usuário atual
+            foreach ($reviews as $review) {
+                $review->user = DB::selectOne('SELECT * FROM users WHERE id = ?', [$review->user_id]);
+                $review->rating = DB::selectOne('SELECT * FROM ratings WHERE product_id = ? AND user_id = ?', [$product->id, $review->user_id]);
+            }
+
             return view('frontend.products.view', compact('category', 'product', 'ratings', 'ratings_value', 'user_rating', 'reviews'));
         } catch (\Throwable $th) {
             report($th);

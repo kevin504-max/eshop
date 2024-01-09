@@ -98,7 +98,7 @@
                                         <i class="fa fa-star"></i>
                                     @endfor
                                 @endif
-                                <small>Reviewed on {{ $review->created_at->format('d/m/Y') }}</small>
+                                <small>Reviewed on {{ \Carbon\Carbon::parse($review->created_at)->format('d/m/Y') }}</small>
                                 <p>{{ $review->review }}</p>
                             </div>
                         @empty
