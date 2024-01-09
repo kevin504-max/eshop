@@ -29,7 +29,7 @@
                             <label for="total_price">Total Price</label>
                             <div class="border mb-3">${{ $order->total_price }}</div>
                             <label for="total_price">Order Date</label>
-                            <div class="border mb-3">{{ $order->created_at->format('d/m/Y') }}</div>
+                            <div class="border mb-3">{{ \Carbon\Carbon::parse($order->created_at)->format('d/m/Y') }}</div>
                         </div>
                         <div class="col-md-6">
                             <h4>Order Details</h4>
