@@ -42,17 +42,14 @@ class CategoryController extends Controller
             }
 
             // Inserção de dados usando SQL puro
-            DB::insert('INSERT INTO categories (name, slug, description, status, popular, image, meta_title, meta_description, meta_keywords, created_at, updated_at)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+            DB::insert('INSERT INTO categories (name, slug, description, status, popular, image, created_at, updated_at)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [
                             $request->name,
                             $request->slug,
                             $request->description,
                             ($request->status == true) ? 1 : 0,
                             ($request->popular == true) ? 1 : 0,
                             $image,
-                            '',
-                            '',
-                            '',
                             now(),
                             now(),
                         ]);
@@ -137,5 +134,5 @@ class CategoryController extends Controller
             report($th);
             return redirect()->back()->with(["status" => "error", "message" => "Something went wrong! Try again."]);
         }
-    } 
+    }
 }
