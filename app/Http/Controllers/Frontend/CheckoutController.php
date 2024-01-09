@@ -36,7 +36,7 @@ class CheckoutController extends Controller
             $cartItems = DB::select('SELECT * FROM carts WHERE user_id = ?', [Auth::id()]);
 
             foreach ($cartItems as $cartItem) {
-                $cartItem->product = Product::find($cartItem->product_id);
+                $cartItem->product = DB::selectOne('SELECT * FROM products WHERE id = ?', [$cartItem->product_id]);
             }
 
             return view('frontend.checkout', compact('cartItems'));

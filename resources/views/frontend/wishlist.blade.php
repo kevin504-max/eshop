@@ -14,7 +14,7 @@
 <div class="container my-5">
     <div class="card shadow wishlist-items">
         <div class="card-body">
-            @if ($wishlist->count() > 0)
+            @if (count($wishlist) > 0)
                 <div class="card-body">
                     @php
                         $total = 0;
@@ -30,7 +30,7 @@
                             </div>
                             <div class="col-md-2 mt-5">
                                 <input type="hidden" class="product_id" value="{{ $item->product_id }}">
-                                @if ($item->product->stock >= $item->items)
+                                @if ($item->product->stock >= 1)
                                     <h6>In Stock</h6>
                                 @else
                                     <h6>Out of Stock</h6>

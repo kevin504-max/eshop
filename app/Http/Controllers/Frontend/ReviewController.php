@@ -15,7 +15,9 @@ class ReviewController extends Controller
     public function create($product_slug)
     {
         try {
-            $product = Product::where('slug', $product_slug)->first();
+            $product = DB::table('products')
+                ->where('slug', $product_slug)
+                ->first();
 
             if (!$product) {
                 return redirect()->back()->with(['status' => 'info', 'message' => 'The link you followed was broken!']);
