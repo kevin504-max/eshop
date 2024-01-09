@@ -34,7 +34,7 @@
                         @for ($i = 5; $i > $rate_number; $i--)
                             <i class="fa fa-star" style="color: #ccc;"></i>
                         @endfor
-                        <span>@if ($ratings->count() > 0) {{ $ratings->count() }} Ratings @else No Ratings @endif</span>
+                        <span>@if (count($ratings) > 0) {{ count($ratings) }} Ratings @else No Ratings @endif</span>
                     </div>
                     <p class="mt-3">{!! $product->description !!}</p>
                     <div class="hr-line col-lg-12"></div>
