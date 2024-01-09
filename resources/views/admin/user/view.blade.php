@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="phone">Phone</label>
-                            <div class="p-2 border">{{ $user->phone }}</div>
+                            <div class="p-2 border">{{ $user->phone ?? '-' }}</div>
                         </div>
                         <div class="col-md-4 mt-3">
                             <label for="cpf_cnpj">CPF/CNPJ</label>

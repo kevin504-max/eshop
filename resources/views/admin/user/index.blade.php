@@ -24,7 +24,7 @@
                             <td class="text-center align-middle">{{ $user->id }}</td>
                             <td class="text-center align-middle">{{ $user->name }}</td>
                             <td class="text-center align-middle">{{ $user->email }}</td>
-                            <td class="text-center align-middle">{{ $user->phone }}</td>
+                            <td class="text-center align-middle">{{ $user->phone ?? '-' }}</td>
                             <td class="text-center align-middle">
                                 <a href="{{ route('dashboard.viewUser', ['id' => $user->id]) }}" class="btn btn-primary" type="button"><i class="fa fa-eye"></i></a>
                             </td>
