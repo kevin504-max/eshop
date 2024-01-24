@@ -34,7 +34,11 @@
                             <td class="text-center align-middle">{{ $product['rating'] }}</td>
                             <td class="text-center align-middle">{{ $product['stock'] }}</td>
                             <td class="text-center align-middle height-img">
-                                <img src="{{ asset('assets/uploads/product/' . $product['thumbnail']) }}" alt="image" class="img-circle" style="height: 80px;">
+                                @if (file_exists(public_path('assets/uploads/product/' . $product->thumbnail)))
+                                    <img src="{{ asset('assets/uploads/product/' . $product['thumbnail']) }}" alt="image" class="img-circle" style="height: 80px;">
+                                @else
+                                    <img src="{{ $product['thumbnail'] }}" alt="image" class="img-circle" style="height: 80px;">
+                                @endif
                             </td>
                             <td class="text-center align-middle">
                                 <button class="btn btn-primary" type="button" data-bs-target="#modalUpdateProducts" data-bs-toggle="modal" data-product="{{ json_encode($product) }}"><i class="fa fa-pen"></i></button>

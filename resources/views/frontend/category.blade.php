@@ -13,7 +13,11 @@
                             <div class="col-md-4 mb-3">
                                 <a href="{{ url('category/' . $category->slug) }}">
                                     <div class="card height-img">
-                                        <img src="{{ asset('assets/uploads/category/' . $category->image) }}" alt="Category image" class="d-block w-100" style="height: 350px;">
+                                        @if (file_exists(public_path('assets/uploads/category/' . $category->image)))
+                                            <img src="{{ asset('assets/uploads/category/' . $category->image) }}" alt="Category image" class="d-block w-100" style="height: 350px;">
+                                        @else
+                                            <img src="{{ $category->image }}" alt="Category image" class="d-block w-100" style="height: 350px;">
+                                        @endif
                                         <div class="card-body">
                                             <h5>{{ $category->name }}</h5>
                                             <p>{{ $category->description }}</p>

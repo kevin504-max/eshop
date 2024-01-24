@@ -21,7 +21,11 @@
                 @foreach ($cartItems as $item)
                     <div class="row mb-3 product_data">
                         <div class="col-md-2 height-img">
-                            <img src="{{ asset('assets/uploads/product/' . $item->product->thumbnail) }}" alt="Product image" class="w-100 border-radius-xl p-2" style="height: 120px;">
+                            @if (file_exists(public_path('assets/uploads/product/' . $product->thumbnail)))
+                                <img src="{{ asset('assets/uploads/product/' . $item->product->thumbnail) }}" alt="Product image" class="w-100 border-radius-xl p-2" style="height: 120px;">
+                            @else
+                                <img src="{{ $item->product->thumbnail }}" alt="Product image" class="w-100 border-radius-xl p-2" style="height: 120px;">
+                            @endif
                         </div>
                         <div class="col-md-5 mt-5">
                             <h4>{{ $item->product->title }}</h4>

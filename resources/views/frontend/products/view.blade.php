@@ -17,7 +17,11 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4 border-right">
-                    <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="Product image" class="w-100 border-radius-xl p-2">
+                    @if (file_exists(public_path('assets/uploads/product/' . $product->thumbnail)))
+                        <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="Product image" class="w-100 border-radius-xl p-2">
+                    @else
+                        <img src="{{ $product->thumbnail }}" alt="Product image" class="w-100 border-radius-xl p-2">
+                    @endif
                 </div>
                 <div class="col-md-8">
                     <h2 class="mb-0">{{ $product->title }} <label class="float-end badge bg-danger m-2" style="font-size: 0.8rem">Trending</label></h2>

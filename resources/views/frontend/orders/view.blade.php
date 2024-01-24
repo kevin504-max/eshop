@@ -49,7 +49,11 @@
                                             <td class="text-center">{{ $item->quantity }}</td>
                                             <td class="text-center">${{ ($item->product->price - $item->product->discountPercentage) }}</td>
                                             <td class="text-center">
-                                                <img src="{{ asset('assets/uploads/product/' . $item->product->thumbnail) }}" alt="{{ $item->product->title }}" class="img-circle w-30">
+                                                @if (file_exists(public_path('assets/uploads/product/' . $product->thumbnail)))
+                                                    <img src="{{ asset('assets/uploads/product/' . $item->product->thumbnail) }}" alt="{{ $item->product->title }}" class="img-circle w-30">
+                                                @else
+                                                    <img src="{{ $item->product->thumbnail }}" alt="{{ $item->product->title }}" class="img-circle w-30">
+                                                @endif
                                             </td>
                                         </tr>
                                     @empty

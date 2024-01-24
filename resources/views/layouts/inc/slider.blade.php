@@ -7,7 +7,11 @@
     <div class="carousel-inner">
         @foreach($featureds as $product)
             <div class="carousel-item @if($loop->first) active @endif height-img">
-                <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="image" class="d-block w-100" style="height: 500px;">
+                @if (file_exists(public_path('assets/uploads/product/' . $product->thumbnail)))
+                    <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="image" class="d-block w-100" style="height: 500px;">
+                @else
+                    <img src="{{ $product->thumbnail }}" alt="image" class="d-block w-100" style="height: 500px;">
+                @endif
             </div>
         @endforeach
     </div>
