@@ -21,8 +21,7 @@
                         <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="Product image" class="w-100 border-radius-xl p-2">
                     @else
                         <img src="{{ $product->thumbnail }}" alt="Product image" class="w-100 border-radius-xl p-2">
-                    @endif
-                </div>
+                    @endif                </div>
                 <div class="col-md-8">
                     <h2 class="mb-0">{{ $product->title }} <label class="float-end badge bg-danger m-2" style="font-size: 0.8rem">Trending</label></h2>
                     <div class="hr-line col-lg-12"></div>

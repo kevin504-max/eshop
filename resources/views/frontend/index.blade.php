@@ -12,12 +12,11 @@
                 @foreach($most_rated as $product)
                     <div class="item mb-3">
                         <div class="card height-img">
-                            @if (file_exists(public_path('assets/uploads/product/' . $product->thumbnail)))
-                                <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="Product image" class="d-block w-80" style="height: 320px;">
-                            @else
-                                <img src="{{  $product->thumbnail }}" alt="Product image" class="d-block w-80" style="height: 320px;">
-                            @endif
-                            <div class="card-body">
+                                @if (file_exists(public_path('assets/uploads/product/' . $product->thumbnail)))
+                                    <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="Product image" class="d-block w-80" style="height: 320px;">
+                                @else
+                                    <img src="{{  $product->thumbnail }}" alt="Product image" class="d-block w-80" style="height: 320px;">
+                                @endif                            <div class="card-body">
                                 <h5>{{ $product->title }}</h5>
                                 <small class="float-start">{{ "$" . ($product->price - $product->discountPercentage) }}</small>
                                 <small class="float-end"> <s> {{ "$" . $product->price }}</s></small>
@@ -38,12 +37,11 @@
                     <a href="{{ url('category/' . $category->slug) }}">
                         <div class="item mb-3">
                             <div class="card height-img">
-                                @if (file_exists(public_path('assets/uploads/category/' . $category->image)))
-                                    <img src="{{ asset('assets/uploads/category/' . $category->image) }}" alt="Category image" class="d-block w-80" style="height: 320px;">
-                                @else
-                                    <img src="{{ $category->image }}" alt="Category image" class="d-block w-80" style="height: 320px;">
-                                @endif
-                                <div class="card-body">
+                                    @if (file_exists(public_path('assets/uploads/category/' . $category->image)))
+                                        <img src="{{ asset('assets/uploads/category/' . $category->image) }}" alt="Category image" class="d-block w-80" style="height: 320px;">
+                                    @else
+                                        <img src="{{ $category->image }}" alt="Category image" class="d-block w-80" style="height: 320px;">
+                                    @endif                                <div class="card-body">
                                     <h5>{{ $category->name }}</h5>
                                     <p>{{ $category->description }}</p>
                                 </div>

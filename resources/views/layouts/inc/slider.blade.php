@@ -11,8 +11,7 @@
                     <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="image" class="d-block w-100" style="height: 500px;">
                 @else
                     <img src="{{ $product->thumbnail }}" alt="image" class="d-block w-100" style="height: 500px;">
-                @endif
-            </div>
+                @endif            </div>
         @endforeach
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

@@ -34,12 +34,11 @@
                             <td class="text-center align-middle">{{ $product['rating'] }}</td>
                             <td class="text-center align-middle">{{ $product['stock'] }}</td>
                             <td class="text-center align-middle height-img">
-                                @if (file_exists(public_path('assets/uploads/product/' . $product->thumbnail)))
-                                    <img src="{{ asset('assets/uploads/product/' . $product['thumbnail']) }}" alt="image" class="img-circle" style="height: 80px;">
-                                @else
-                                    <img src="{{ $product['thumbnail'] }}" alt="image" class="img-circle" style="height: 80px;">
-                                @endif
-                            </td>
+                            @if (file_exists(public_path('assets/uploads/product/' . $product->thumbnail)))
+                                <img src="{{ asset('assets/uploads/product/' . $product['thumbnail']) }}" alt="image" class="img-circle" style="height: 80px;">
+                            @else
+                                <img src="{{ $product['thumbnail'] }}" alt="image" class="img-circle" style="height: 80px;">
+                            @endif                            </td>
                             <td class="text-center align-middle">
                                 <button class="btn btn-primary" type="button" data-bs-target="#modalUpdateProducts" data-bs-toggle="modal" data-product="{{ json_encode($product) }}"><i class="fa fa-pen"></i></button>
                                 <button class="btn btn-danger" type="button" data-bs-target="#modalDeleteProducts" data-bs-toggle="modal" data-id="{{ $product['id'] }}"><i class="fa fa-trash"></i></button>

@@ -25,8 +25,7 @@
                                 <img src="{{ asset('assets/uploads/product/' . $item->product->thumbnail) }}" alt="Product image" class="w-100 border-radius-xl p-2" style="height: 120px;">
                             @else
                                 <img src="{{ $item->product->thumbnail }}" alt="Product image" class="w-100 border-radius-xl p-2" style="height: 120px;">
-                            @endif
-                        </div>
+                            @endif                        </div>
                         <div class="col-md-5 mt-5">
                             <h4>{{ $item->product->title }}</h4>
                             <h4>${{ ($item->product->price - $item->product->discountPercentage) }}</h4>

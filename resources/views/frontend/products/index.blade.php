@@ -19,12 +19,11 @@
                 <div class="col-md-3 mb-3">
                     <a href="{{ url('category/' . $category->slug . '/' . $product->slug) }}">
                         <div class="card height-img">
-                            @if (file_exists(public_path('assets/uploads/product/' . $product->thumbnail)))
-                                <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="Product image" class="d-block w-100" style="height: 300px;">
-                            @else
-                                <img src="{{ $product->thumbnail }}" alt="Product image" class="d-block w-100" style="height: 300px;">
-                            @endif
-                            <div class="card-body">
+                                @if (file_exists(public_path('assets/uploads/product/' . $product->thumbnail)))
+                                    <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="Product image" class="d-block w-100" style="height: 300px;">
+                                @else
+                                    <img src="{{ $product->thumbnail }}" alt="Product image" class="d-block w-100" style="height: 300px;">
+                                @endif                            <div class="card-body">
                                 <h5>{{ $product->title }}</h5>
                                 <small class="float-start">{{ "$" . ($product->price - $product->discountPercentage) }}</small>
                                 <small class="float-end"> <s> {{ "$" . $product->price }}</s></small>

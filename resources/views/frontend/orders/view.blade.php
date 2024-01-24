@@ -53,8 +53,7 @@
                                                     <img src="{{ asset('assets/uploads/product/' . $item->product->thumbnail) }}" alt="{{ $item->product->title }}" class="img-circle w-30">
                                                 @else
                                                     <img src="{{ $item->product->thumbnail }}" alt="{{ $item->product->title }}" class="img-circle w-30">
-                                                @endif
-                                            </td>
+                                                @endif                                            </td>
                                         </tr>
                                     @empty
                                         <div class="text-center" colspan="6">

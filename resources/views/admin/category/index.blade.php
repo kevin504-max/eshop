@@ -27,11 +27,10 @@
                             <td class="text-center align-middle">{{ $category['description'] }}</td>
                             <td class="text-center align-middle height-img">
                                 @if (file_exists(public_path('assets/uploads/category/' . $category->image)))
-                                    <img src="{{ asset('assets/uploads/category/' . $category['image']) }}" alt="image" class="img-circle" style="height: 80px;">
-                                @else
-                                    <img src="{{ $category['image'] }}" alt="image" class="img-circle" style="height: 80px;">
-                                @endif
-                            </td>
+                                <img src="{{ asset('assets/uploads/category/' . $category['image']) }}" alt="image" class="img-circle" style="height: 80px;">
+                            @else
+                                <img src="{{ $category['image'] }}" alt="image" class="img-circle" style="height: 80px;">
+                            @endif                            </td>
                             <td class="text-center align-middle">
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdateCategory" data-category="{{ json_encode($category) }}"><i class="fa fa-pen"></i></button>
                                 <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteCategory" data-id="{{ $category['id'] }}"><i class="fa fa-trash"></i></button>
