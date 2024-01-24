@@ -34,7 +34,7 @@
                             <td class="text-center align-middle">{{ $product['rating'] }}</td>
                             <td class="text-center align-middle">{{ $product['stock'] }}</td>
                             <td class="text-center align-middle height-img">
-                            @if (file_exists(public_path('assets/uploads/product/' . $product->thumbnail)))
+                            @if (file_exists(public_path('assets/uploads/product/' . $product['thumbnail'])))
                                 <img src="{{ asset('assets/uploads/product/' . $product['thumbnail']) }}" alt="image" class="img-circle" style="height: 80px;">
                             @else
                                 <img src="{{ $product['thumbnail'] }}" alt="image" class="img-circle" style="height: 80px;">
