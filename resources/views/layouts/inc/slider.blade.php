@@ -7,7 +7,7 @@
     <div class="carousel-inner">
         @foreach($featureds as $product)
             <div class="carousel-item @if($loop->first) active @endif height-img">
-                <img src="{{ asset('assets/uploads/product/' . $product->thumbnail) }}" alt="image" class="d-block w-100" style="height: 500px;">
+                <img src="{{ $product->thumbnail }}" alt="image" class="d-block w-100" style="height: 500px;">
             </div>
         @endforeach
     </div>

@@ -49,7 +49,7 @@
                                             <td class="text-center">{{ $item->quantity }}</td>
                                             <td class="text-center">${{ ($item->product->price - $item->product->discountPercentage) }}</td>
                                             <td class="text-center">
-                                                <img src="{{ asset('assets/uploads/product/' . $item->product->thumbnail) }}" alt="{{ $item->product->title }}" class="img-circle w-30">
+                                                <img src="{{ $item->product->thumbnail }}" alt="{{ $item->product->title }}" class="img-circle w-30">
                                             </td>
                                         </tr>
                                     @empty
