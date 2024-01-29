@@ -15,9 +15,7 @@ class ReviewController extends Controller
     public function create($product_slug)
     {
         try {
-            $product = DB::table('products')
-                ->where('slug', $product_slug)
-                ->first();
+            $product = DB::selectOne('SELECT * FROM products WHERE slug = ?', [$product_slug]);
 
             if (!$product) {
                 return redirect()->back()->with(['status' => 'info', 'message' => 'The link you followed was broken!']);
@@ -26,26 +24,20 @@ class ReviewController extends Controller
             $userId = Auth::id();
 
             // Check if the user has already reviewed the product
-            $review = DB::table('reviews')
-                ->where('user_id', $userId)
-                ->where('product_id', $product->id)
-                ->first();
-
-            // Atribui o produto ao comentário
-            $review->product = $product;
+            $review = DB::selectOne('SELECT * FROM reviews WHERE user_id = ? AND product_id = ?', [$userId, $product->id]);
 
             if ($review) {
                 return view('frontend.reviews.edit', compact('review'));
             }
-
             // Check if the user has purchased the product
-            $verifiedPurchase = DB::table('orders')
-                ->join('order_items', 'orders.id', 'order_items.order_id')
-                ->where('orders.user_id', $userId)
-                ->where('order_items.product_id', $product->id)
-                ->get();
+            $verifiedPurchase = DB::selectOne('
+                SELECT * FROM orders
+                JOIN order_items ON orders.id = order_items.order_id
+                WHERE orders.user_id = ?
+                AND order_items.product_id = ?', [$userId, $product->id]
+            );
 
-            if (!$verifiedPurchase->count()) {
+            if (!$verifiedPurchase) {
                 return redirect()->back()->with(['status' => 'info', 'message' => 'You can only review products you have purchased!']);
             }
 
@@ -64,11 +56,7 @@ class ReviewController extends Controller
             $userId = Auth::id();
 
             // Check if the product exists
-            $product = DB::table('products')
-                ->join('categories', 'products.category_id', '=', 'categories.id')
-                ->select('products.*', 'categories.slug as category_slug')
-                ->where('products.id', $productId)
-                ->first();
+            $product = DB::selectOne('SELECT * FROM products WHERE id = ?', [$productId]);
 
             if (!$product) {
                 return redirect()->back()->with(['status' => 'info', 'message' => 'The link you followed was broken!']);
@@ -99,11 +87,12 @@ class ReviewController extends Controller
     {
         $product = DB::select("SELECT * FROM products WHERE slug = ?", [$product_slug]);
 
+
         if (empty($product)) {
             return redirect()->back()->with(['status' => 'info', 'message' => 'The link you followed was broken!']);
         }
 
-        $review = DB::select("
+        $review = DB::selectOne("
             SELECT * FROM reviews
             WHERE user_id = ? AND product_id = ?
             LIMIT 1

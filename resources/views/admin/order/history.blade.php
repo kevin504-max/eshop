@@ -27,7 +27,7 @@
                             <tbody>
                                 @forelse ($orders as $item)
                                     <tr>
-                                        <td class="text-center">{{ $item->created_at->format('d/m/Y') }}</td>
+                                        <td class="text-center">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
                                         <td class="text-center">{{ $item->tracking_number }}</td>
                                         <td class="text-center">{{ $item->total_price }}</td>
                                         <td class="text-center">{{ ($item->status == 0) ? 'Pending' : 'Completed' }}</td>

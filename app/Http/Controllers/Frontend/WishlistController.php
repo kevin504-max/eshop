@@ -45,29 +45,21 @@ class WishlistController extends Controller
                 $productId = $request->product_id;
 
                 // Verifica se o produto existe
-                $productExists = DB::table('products')->where('id', $productId)->exists();
+                $productExists = DB::selectOne('SELECT * FROM products WHERE id = ?', [$productId]);
 
                 if (!$productExists) {
                     return response()->json(['status' => 'error', 'message' => 'Something went wrong! Try again.']);
                 }
 
                 // Verifica se o produto já está na lista de desejos do usuário
-                $wishlistExists = DB::table('wishlists')
-                    ->where('user_id', Auth::id())
-                    ->where('product_id', $productId)
-                    ->exists();
+                $wishlistExists = DB::selectOne('SELECT * FROM wishlists WHERE user_id = ? AND product_id = ?', [Auth::id(), $productId]);
 
                 if ($wishlistExists) {
                     return response()->json(['status' => 'info', 'message' => 'Product is already in your wishlist.']);
                 }
 
                 // Adiciona o produto à lista de desejos
-                DB::table('wishlists')->insert([
-                    'user_id' => Auth::id(),
-                    'product_id' => $productId,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
+                DB::insert('INSERT INTO wishlists (user_id, product_id) VALUES (?, ?)', [Auth::id(), $productId]);
 
                 return response()->json(['status' => 'success', 'message' => 'Product added to wishlist!']);
             }
@@ -86,20 +78,14 @@ class WishlistController extends Controller
                 $productId = $request->product_id;
 
                 // Verifica se o produto está na lista de desejos do usuário
-                $wishlistItem = DB::table('wishlists')
-                    ->where('user_id', Auth::id())
-                    ->where('product_id', $productId)
-                    ->first();
+                $wishlistItem = DB::selectOne('SELECT * FROM wishlists WHERE user_id = ? AND product_id = ?', [Auth::id(), $productId]);
 
                 if (!$wishlistItem) {
                     return response()->json(['status' => 'error', 'message' => 'Something went wrong! Try again.']);
                 }
 
                 // Remove o produto da lista de desejos
-                DB::table('wishlists')
-                    ->where('user_id', Auth::id())
-                    ->where('product_id', $productId)
-                    ->delete();
+                DB::delete('DELETE FROM wishlists WHERE user_id = ? AND product_id = ?', [Auth::id(), $productId]);
 
                 return response()->json(['status' => 'success', 'message' => 'Product removed from wishlist!']);
             }
@@ -114,7 +100,7 @@ class WishlistController extends Controller
     public function wishlistCount()
     {
         try {
-            $wishCount = DB::table('wishlists')->where('user_id', Auth::id())->count();
+            $wishCount = DB::selectOne('SELECT COUNT(*) as count FROM wishlists WHERE user_id = ?', [Auth::id()])->count;
 
             return response()->json(['count' => $wishCount]);
         } catch (\Throwable $th) {

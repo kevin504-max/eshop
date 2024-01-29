@@ -8,7 +8,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h5>You are writing a review for {{ $review->product->title }}</h5>
+                    <h5>You are writing a review for {{
+                            DB::select('SELECT title FROM products WHERE id = ?', [$review->product_id])[0]->title
+                    }}</h5>
                     <form action="{{ url('/update-review') }}" method="POST">
                         @csrf
                         @method("PUT")
