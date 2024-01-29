@@ -26,7 +26,7 @@
                             <td class="text-center align-middle">{{ $category['name'] }}</td>
                             <td class="text-center align-middle">{{ $category['description'] }}</td>
                             <td class="text-center align-middle height-img">
-                                @if (file_exists(public_path('assets/uploads/category/' . $category->image)))
+                                @if (file_exists(public_path('assets/uploads/category/' . $category['image'])))
                                 <img src="{{ asset('assets/uploads/category/' . $category['image']) }}" alt="image" class="img-circle" style="height: 80px;">
                             @else
                                 <img src="{{ $category['image'] }}" alt="image" class="img-circle" style="height: 80px;">
